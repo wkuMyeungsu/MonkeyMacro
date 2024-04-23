@@ -22,6 +22,8 @@ namespace MonkeyMacro
 
             UC_Home uc = new UC_Home();
             addUserControl(uc);
+
+            MessageBox.Show("git test");
         }
 
         private void addUserControl(UserControl userControl)
