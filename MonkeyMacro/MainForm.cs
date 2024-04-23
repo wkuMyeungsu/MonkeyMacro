@@ -13,20 +13,62 @@ namespace MonkeyMacro
 {
     public partial class MainForm : Form
     {
+        private bool isDragging = false;
+        private Point draggingStartPoint;
+
         public MainForm()
         {
             InitializeComponent();
             this.pictureBoxButtonExit.MouseMove += pictureBoxButton_Move;
             this.pictureBoxButtonMinimize.MouseMove += pictureBoxButton_Move;
-            this.pictureBoxButtonTray.MouseMove += pictureBoxButton_Move;
+            this.Activated += MainForm_Activated;
+
+            panelTitleBar.MouseDown += PanelTitleBar_MouseDown;
+            panelTitleBar.MouseMove += PanelTitleBar_MouseMove;
+            panelTitleBar.MouseUp += PanelTitleBar_MouseUp;
 
             UC_Home uc = new UC_Home();
-            addUserControl(uc);
+            switchUserControl(uc);
+            this.TopMost = true;
 
-            MessageBox.Show("git test");
+
         }
 
-        private void addUserControl(UserControl userControl)
+        private void PanelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                isDragging = true;
+                draggingStartPoint = new Point(e.X, e.Y);
+            }
+        }
+
+        private void PanelTitleBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDragging = false;
+        }
+
+        private void PanelTitleBar_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(isDragging)
+            {
+                Point point = PointToScreen(e.Location);
+                Location = new Point(point.X - draggingStartPoint.X, point.Y - draggingStartPoint.Y);
+            }
+        }
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }else
+            {
+                this.WindowState= FormWindowState.Minimized;
+            }
+        }
+
+        private void switchUserControl(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;
 
@@ -53,13 +95,13 @@ namespace MonkeyMacro
         private void buttonManageKeys_Click(object sender, EventArgs e)
         {
             UC_ManageKey uc = new UC_ManageKey();
-            addUserControl(uc);
+            switchUserControl(uc);
         }
 
         private void buttonSettings_Click(object sender, EventArgs e)
         {
             UC_Settings uc = new UC_Settings();
-            addUserControl(uc);
+            switchUserControl(uc);
         }
     }
 }
