@@ -35,19 +35,20 @@
             // 
             this.labelTestSettings.AutoSize = true;
             this.labelTestSettings.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold);
-            this.labelTestSettings.Location = new System.Drawing.Point(147, 207);
+            this.labelTestSettings.Location = new System.Drawing.Point(168, 259);
             this.labelTestSettings.Name = "labelTestSettings";
-            this.labelTestSettings.Size = new System.Drawing.Size(113, 32);
+            this.labelTestSettings.Size = new System.Drawing.Size(142, 40);
             this.labelTestSettings.TabIndex = 1;
             this.labelTestSettings.Text = "Settings";
             // 
             // UC_Settings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.labelTestSettings);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UC_Settings";
-            this.Size = new System.Drawing.Size(407, 447);
+            this.Size = new System.Drawing.Size(465, 559);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -24,6 +24,10 @@ namespace MonkeyMacro
             InitializeEventHandlers();
             InitializeDefaultUserControl();
             InitializeAttributes();
+
+            LoginForm loginForm = new LoginForm();
+            DialogResult Result = loginForm.ShowDialog();
+
         }
 
         private void InitializeDefaultUserControl()
@@ -53,7 +57,6 @@ namespace MonkeyMacro
         {
             if (e.Button == MouseButtons.Left)
             {
-                // 왼쪽 버튼을 클릭했을 때 실행할 동작을 여기에 작성
                 Console.WriteLine("작업 표시줄 아이콘을 클릭했습니다.");
             }
         }
