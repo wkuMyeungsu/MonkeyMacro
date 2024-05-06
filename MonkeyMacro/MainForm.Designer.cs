@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.panel_titleBar = new System.Windows.Forms.Panel();
-            this.pictureBoxButton_minimize = new System.Windows.Forms.PictureBox();
-            this.pictureBoxButton_exit = new System.Windows.Forms.PictureBox();
             this.label_title = new System.Windows.Forms.Label();
-            this.pictureBox_logo = new System.Windows.Forms.PictureBox();
             this.panel_menu = new System.Windows.Forms.Panel();
             this.label_menuInfo = new System.Windows.Forms.Label();
+            this.panel_container = new System.Windows.Forms.Panel();
             this.button_utility = new System.Windows.Forms.Button();
             this.button_manageKeys = new System.Windows.Forms.Button();
             this.button_settings = new System.Windows.Forms.Button();
-            this.panel_container = new System.Windows.Forms.Panel();
+            this.pictureBoxButton_minimize = new System.Windows.Forms.PictureBox();
+            this.pictureBoxButton_exit = new System.Windows.Forms.PictureBox();
+            this.pictureBox_logo = new System.Windows.Forms.PictureBox();
             this.panel_titleBar.SuspendLayout();
+            this.panel_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButton_minimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButton_exit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).BeginInit();
-            this.panel_menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_titleBar
@@ -59,28 +59,6 @@
             this.panel_titleBar.Size = new System.Drawing.Size(407, 48);
             this.panel_titleBar.TabIndex = 0;
             // 
-            // pictureBoxButton_minimize
-            // 
-            this.pictureBoxButton_minimize.Image = global::MonkeyMacro.Properties.Resources.white_minus;
-            this.pictureBoxButton_minimize.Location = new System.Drawing.Point(356, 8);
-            this.pictureBoxButton_minimize.Name = "pictureBoxButton_minimize";
-            this.pictureBoxButton_minimize.Size = new System.Drawing.Size(16, 16);
-            this.pictureBoxButton_minimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxButton_minimize.TabIndex = 4;
-            this.pictureBoxButton_minimize.TabStop = false;
-            this.pictureBoxButton_minimize.Click += new System.EventHandler(this.pictureBoxButtonMinimize_Click);
-            // 
-            // pictureBoxButton_exit
-            // 
-            this.pictureBoxButton_exit.Image = global::MonkeyMacro.Properties.Resources.white_cross;
-            this.pictureBoxButton_exit.Location = new System.Drawing.Point(384, 8);
-            this.pictureBoxButton_exit.Name = "pictureBoxButton_exit";
-            this.pictureBoxButton_exit.Size = new System.Drawing.Size(16, 16);
-            this.pictureBoxButton_exit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxButton_exit.TabIndex = 2;
-            this.pictureBoxButton_exit.TabStop = false;
-            this.pictureBoxButton_exit.Click += new System.EventHandler(this.pictureBoxButtonExit_Click);
-            // 
             // label_title
             // 
             this.label_title.AutoSize = true;
@@ -91,16 +69,6 @@
             this.label_title.Size = new System.Drawing.Size(125, 19);
             this.label_title.TabIndex = 1;
             this.label_title.Text = "Monkey Macro";
-            // 
-            // pictureBox_logo
-            // 
-            this.pictureBox_logo.Image = global::MonkeyMacro.Properties.Resources.logo_monkey;
-            this.pictureBox_logo.Location = new System.Drawing.Point(6, 5);
-            this.pictureBox_logo.Name = "pictureBox_logo";
-            this.pictureBox_logo.Size = new System.Drawing.Size(36, 36);
-            this.pictureBox_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_logo.TabIndex = 0;
-            this.pictureBox_logo.TabStop = false;
             // 
             // panel_menu
             // 
@@ -124,6 +92,14 @@
             this.label_menuInfo.Size = new System.Drawing.Size(120, 21);
             this.label_menuInfo.TabIndex = 3;
             this.label_menuInfo.Text = "Tracing : none";
+            // 
+            // panel_container
+            // 
+            this.panel_container.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_container.Location = new System.Drawing.Point(0, 84);
+            this.panel_container.Name = "panel_container";
+            this.panel_container.Size = new System.Drawing.Size(407, 447);
+            this.panel_container.TabIndex = 2;
             // 
             // button_utility
             // 
@@ -155,13 +131,37 @@
             this.button_settings.UseVisualStyleBackColor = true;
             this.button_settings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
-            // panel_container
+            // pictureBoxButton_minimize
             // 
-            this.panel_container.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_container.Location = new System.Drawing.Point(0, 84);
-            this.panel_container.Name = "panel_container";
-            this.panel_container.Size = new System.Drawing.Size(407, 447);
-            this.panel_container.TabIndex = 2;
+            this.pictureBoxButton_minimize.Image = global::MonkeyMacro.Properties.Resources.white_minus;
+            this.pictureBoxButton_minimize.Location = new System.Drawing.Point(356, 8);
+            this.pictureBoxButton_minimize.Name = "pictureBoxButton_minimize";
+            this.pictureBoxButton_minimize.Size = new System.Drawing.Size(16, 16);
+            this.pictureBoxButton_minimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxButton_minimize.TabIndex = 4;
+            this.pictureBoxButton_minimize.TabStop = false;
+            this.pictureBoxButton_minimize.Click += new System.EventHandler(this.pictureBoxButtonMinimize_Click);
+            // 
+            // pictureBoxButton_exit
+            // 
+            this.pictureBoxButton_exit.Image = global::MonkeyMacro.Properties.Resources.white_cross;
+            this.pictureBoxButton_exit.Location = new System.Drawing.Point(384, 8);
+            this.pictureBoxButton_exit.Name = "pictureBoxButton_exit";
+            this.pictureBoxButton_exit.Size = new System.Drawing.Size(16, 16);
+            this.pictureBoxButton_exit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxButton_exit.TabIndex = 2;
+            this.pictureBoxButton_exit.TabStop = false;
+            this.pictureBoxButton_exit.Click += new System.EventHandler(this.pictureBoxButtonExit_Click);
+            // 
+            // pictureBox_logo
+            // 
+            this.pictureBox_logo.Image = global::MonkeyMacro.Properties.Resources.logo_monkey;
+            this.pictureBox_logo.Location = new System.Drawing.Point(6, 5);
+            this.pictureBox_logo.Name = "pictureBox_logo";
+            this.pictureBox_logo.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_logo.TabIndex = 0;
+            this.pictureBox_logo.TabStop = false;
             // 
             // MainForm
             // 
@@ -177,11 +177,11 @@
             this.Text = "Form1";
             this.panel_titleBar.ResumeLayout(false);
             this.panel_titleBar.PerformLayout();
+            this.panel_menu.ResumeLayout(false);
+            this.panel_menu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButton_minimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButton_exit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).EndInit();
-            this.panel_menu.ResumeLayout(false);
-            this.panel_menu.PerformLayout();
             this.ResumeLayout(false);
 
         }

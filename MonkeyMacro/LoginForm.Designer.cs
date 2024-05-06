@@ -30,12 +30,12 @@
         {
             this.panel_titleBar = new System.Windows.Forms.Panel();
             this.label_title = new System.Windows.Forms.Label();
-            this.pictureBoxButton_exit = new System.Windows.Forms.PictureBox();
             this.textBox_passWord = new System.Windows.Forms.TextBox();
             this.textBox_userName = new System.Windows.Forms.TextBox();
             this.label_passWord = new System.Windows.Forms.Label();
             this.label_userName = new System.Windows.Forms.Label();
             this.button_login = new System.Windows.Forms.Button();
+            this.pictureBoxButton_exit = new System.Windows.Forms.PictureBox();
             this.panel_titleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButton_exit)).BeginInit();
             this.SuspendLayout();
@@ -61,17 +61,6 @@
             this.label_title.Size = new System.Drawing.Size(100, 32);
             this.label_title.TabIndex = 3;
             this.label_title.Text = "Sign In";
-            // 
-            // pictureBoxButton_exit
-            // 
-            this.pictureBoxButton_exit.Image = global::MonkeyMacro.Properties.Resources.white_cross;
-            this.pictureBoxButton_exit.Location = new System.Drawing.Point(388, 8);
-            this.pictureBoxButton_exit.Name = "pictureBoxButton_exit";
-            this.pictureBoxButton_exit.Size = new System.Drawing.Size(16, 16);
-            this.pictureBoxButton_exit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxButton_exit.TabIndex = 2;
-            this.pictureBoxButton_exit.TabStop = false;
-            this.pictureBoxButton_exit.Click += new System.EventHandler(this.pictureBoxButton_exit_Click);
             // 
             // textBox_passWord
             // 
@@ -121,6 +110,17 @@
             this.button_login.Text = "Login";
             this.button_login.UseVisualStyleBackColor = true;
             this.button_login.Click += new System.EventHandler(this.button_login_Click);
+            // 
+            // pictureBoxButton_exit
+            // 
+            this.pictureBoxButton_exit.Image = global::MonkeyMacro.Properties.Resources.white_cross;
+            this.pictureBoxButton_exit.Location = new System.Drawing.Point(388, 8);
+            this.pictureBoxButton_exit.Name = "pictureBoxButton_exit";
+            this.pictureBoxButton_exit.Size = new System.Drawing.Size(16, 16);
+            this.pictureBoxButton_exit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxButton_exit.TabIndex = 2;
+            this.pictureBoxButton_exit.TabStop = false;
+            this.pictureBoxButton_exit.Click += new System.EventHandler(this.pictureBoxButton_exit_Click);
             // 
             // LoginForm
             // 

@@ -58,14 +58,6 @@ namespace MonkeyMacro
             isHome = true;
         }
 
-        private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                Console.WriteLine("작업 표시줄 아이콘을 클릭했습니다.");
-            }
-        }
-
         private void PanelTitleBar_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
