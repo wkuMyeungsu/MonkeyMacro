@@ -24,6 +24,9 @@ namespace MonkeyMacro
 
         private void InitializeLayout()
         {
+            // LoginForm
+            this.Opacity = 0.8;
+
             // label title
             label_title.Left = (this.panel_titleBar.Width - label_title.Width) / 2;
             label_title.Top = (this.panel_titleBar.Height - label_title.Height) / 2;
@@ -68,6 +71,11 @@ namespace MonkeyMacro
         private void pictureBoxButton_exit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
