@@ -5,6 +5,11 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonkeyMacro", "MonkeyMacro\MonkeyMacro.csproj", "{9661A9AC-02A2-4C16-AAD8-676AFBA8EEF3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{5AC7F3E1-226C-4A10-A2D5-4372D213151D}"
+	ProjectSection(SolutionItems) = preProject
+		branchtext.txt = branchtext.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
