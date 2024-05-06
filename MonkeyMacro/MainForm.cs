@@ -26,7 +26,13 @@ namespace MonkeyMacro
             InitializeAttributes();
 
             LoginForm loginForm = new LoginForm();
-            DialogResult Result = loginForm.ShowDialog();
+            DialogResult result = loginForm.ShowDialog();
+
+            // 로그인 성공시
+            if(result == DialogResult.OK)
+            {
+                this.Show();
+            }
 
         }
 
@@ -43,7 +49,6 @@ namespace MonkeyMacro
             panel_titleBar.MouseUp += PanelTitleBar_MouseUp;
             pictureBoxButton_exit.MouseMove += pictureBoxButton_Move;
             pictureBoxButton_minimize.MouseMove += pictureBoxButton_Move;
-            notifyIcon.MouseClick += NotifyIcon_MouseClick;
         }
 
         private void InitializeAttributes()
@@ -146,25 +151,30 @@ namespace MonkeyMacro
         {
             if (isHome)
             {
-                //MessageBox.Show("add Key");
-
-                Process[] processes = Process.GetProcesses()
-                                             .OrderByDescending(p => p.StartTime)
-                                             .ToArray();
-
-                StringBuilder processInfo = new StringBuilder();
-                foreach (Process process in processes)
-                {
-                    processInfo.AppendLine($"{process.ProcessName} - {process.StartTime}");
-                }
-
-                MessageBox.Show(processInfo.ToString(), "Recently Started Processes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("add Key");
+                //testFunc(sender, e);
             }
             else
             {
                 UC_Home uc = new UC_Home();
                 switchUserControl(uc);
             }
+        }
+
+        private void testFunc(object sender, EventArgs e)
+        {
+            Process[] processes = Process.GetProcesses()
+                                         .OrderByDescending(p => p.StartTime)
+                                         .ToArray();
+
+            StringBuilder processInfo = new StringBuilder();
+            foreach (Process process in processes)
+            {
+                processInfo.AppendLine($"{process.ProcessName} - {process.StartTime}");
+            }
+
+            MessageBox.Show(processInfo.ToString(), "Recently Started Processes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
     }
 }
