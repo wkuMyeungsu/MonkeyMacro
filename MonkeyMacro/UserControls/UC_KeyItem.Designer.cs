@@ -43,18 +43,18 @@
             this.label_underLine.AutoSize = true;
             this.label_underLine.Font = new System.Drawing.Font("굴림", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label_underLine.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label_underLine.Location = new System.Drawing.Point(54, 5);
+            this.label_underLine.Location = new System.Drawing.Point(64, 5);
             this.label_underLine.Name = "label_underLine";
-            this.label_underLine.Size = new System.Drawing.Size(327, 44);
+            this.label_underLine.Size = new System.Drawing.Size(283, 44);
             this.label_underLine.TabIndex = 0;
-            this.label_underLine.Text = "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯";
+            this.label_underLine.Text = "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯";
             // 
             // label_keyName
             // 
             this.label_keyName.AutoSize = true;
             this.label_keyName.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_keyName.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label_keyName.Location = new System.Drawing.Point(178, 1);
+            this.label_keyName.Location = new System.Drawing.Point(162, 0);
             this.label_keyName.Name = "label_keyName";
             this.label_keyName.Size = new System.Drawing.Size(108, 27);
             this.label_keyName.TabIndex = 1;
@@ -63,10 +63,10 @@
             // pictureBoxButton_Edit
             // 
             this.pictureBoxButton_Edit.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxButton_Edit.Image")));
-            this.pictureBoxButton_Edit.Location = new System.Drawing.Point(388, 8);
+            this.pictureBoxButton_Edit.Location = new System.Drawing.Point(398, 9);
             this.pictureBoxButton_Edit.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxButton_Edit.Name = "pictureBoxButton_Edit";
-            this.pictureBoxButton_Edit.Size = new System.Drawing.Size(20, 22);
+            this.pictureBoxButton_Edit.Size = new System.Drawing.Size(18, 21);
             this.pictureBoxButton_Edit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxButton_Edit.TabIndex = 4;
             this.pictureBoxButton_Edit.TabStop = false;
@@ -74,10 +74,10 @@
             // pictureBoxButton_delete
             // 
             this.pictureBoxButton_delete.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxButton_delete.Image")));
-            this.pictureBoxButton_delete.Location = new System.Drawing.Point(414, 5);
+            this.pictureBoxButton_delete.Location = new System.Drawing.Point(368, 9);
             this.pictureBoxButton_delete.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxButton_delete.Name = "pictureBoxButton_delete";
-            this.pictureBoxButton_delete.Size = new System.Drawing.Size(24, 27);
+            this.pictureBoxButton_delete.Size = new System.Drawing.Size(24, 24);
             this.pictureBoxButton_delete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxButton_delete.TabIndex = 3;
             this.pictureBoxButton_delete.TabStop = false;
@@ -86,9 +86,9 @@
             // 
             this.panel_keyContainer.BackColor = System.Drawing.Color.White;
             this.panel_keyContainer.ForeColor = System.Drawing.Color.Transparent;
-            this.panel_keyContainer.Location = new System.Drawing.Point(29, 52);
+            this.panel_keyContainer.Location = new System.Drawing.Point(26, 52);
             this.panel_keyContainer.Name = "panel_keyContainer";
-            this.panel_keyContainer.Size = new System.Drawing.Size(387, 71);
+            this.panel_keyContainer.Size = new System.Drawing.Size(369, 71);
             this.panel_keyContainer.TabIndex = 5;
             // 
             // UC_KeyItem
@@ -103,7 +103,7 @@
             this.Controls.Add(this.label_underLine);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UC_KeyItem";
-            this.Size = new System.Drawing.Size(442, 142);
+            this.Size = new System.Drawing.Size(423, 138);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButton_Edit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButton_delete)).EndInit();
             this.ResumeLayout(false);
