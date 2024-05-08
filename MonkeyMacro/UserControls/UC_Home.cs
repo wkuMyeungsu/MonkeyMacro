@@ -15,6 +15,14 @@ namespace MonkeyMacro.UserControls
         public UC_Home()
         {
             InitializeComponent();
+            AddKeyItme();
+        }
+
+        private void AddKeyItme()
+        {
+            // UserControl을 코드 단에서 생성합니다.
+            UC_KeyItem ucKeyItem = new UC_KeyItem();
+            this.Controls.Add(ucKeyItem);
         }
     }
 }

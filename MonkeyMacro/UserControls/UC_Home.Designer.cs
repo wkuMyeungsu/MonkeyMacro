@@ -36,21 +36,22 @@
             this.labelTestHome.AutoSize = true;
             this.labelTestHome.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTestHome.ForeColor = System.Drawing.Color.White;
-            this.labelTestHome.Location = new System.Drawing.Point(156, 207);
+            this.labelTestHome.Location = new System.Drawing.Point(178, 259);
             this.labelTestHome.Name = "labelTestHome";
-            this.labelTestHome.Size = new System.Drawing.Size(91, 32);
+            this.labelTestHome.Size = new System.Drawing.Size(116, 40);
             this.labelTestHome.TabIndex = 0;
             this.labelTestHome.Text = "Home";
             // 
             // UC_Home
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(86)))), ((int)(((byte)(142)))));
             this.Controls.Add(this.labelTestHome);
             this.ForeColor = System.Drawing.Color.White;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UC_Home";
-            this.Size = new System.Drawing.Size(407, 447);
+            this.Size = new System.Drawing.Size(465, 559);
             this.ResumeLayout(false);
             this.PerformLayout();
 
