@@ -25,6 +25,8 @@ namespace MonkeyMacro
             InitializeDefaultUserControl();
             InitializeAttributes();
 
+            this.Opacity = 0.9;
+
             LoginForm loginForm = new LoginForm();
             DialogResult result = loginForm.ShowDialog();
 
