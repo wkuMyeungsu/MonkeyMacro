@@ -16,13 +16,6 @@ namespace MonkeyMacro
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            // 프로그램 시작 시 비동기로 데이터 로드
-            Task.Run(async () =>
-            {
-                await DataStore.Instance.LoadDataAsync();
-            }).Wait();
-
             Application.Run(new MainForm());
         }
     }

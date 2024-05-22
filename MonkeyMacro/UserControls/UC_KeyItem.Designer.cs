@@ -43,7 +43,7 @@
             this.label_underLine.AutoSize = true;
             this.label_underLine.Font = new System.Drawing.Font("굴림", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label_underLine.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label_underLine.Location = new System.Drawing.Point(64, 5);
+            this.label_underLine.Location = new System.Drawing.Point(64, 12);
             this.label_underLine.Name = "label_underLine";
             this.label_underLine.Size = new System.Drawing.Size(283, 44);
             this.label_underLine.TabIndex = 0;
@@ -54,7 +54,7 @@
             this.label_keyName.AutoSize = true;
             this.label_keyName.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_keyName.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label_keyName.Location = new System.Drawing.Point(162, 0);
+            this.label_keyName.Location = new System.Drawing.Point(162, 6);
             this.label_keyName.Name = "label_keyName";
             this.label_keyName.Size = new System.Drawing.Size(108, 27);
             this.label_keyName.TabIndex = 1;
