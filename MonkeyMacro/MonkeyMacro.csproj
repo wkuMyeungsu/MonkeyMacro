@@ -31,7 +31,7 @@
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -170,6 +170,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\DataController.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +209,7 @@
     <Compile Include="UserControls\UC_Settings.Designer.cs">
       <DependentUpon>UC_Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Objects\UserData.cs" />
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,6 +238,7 @@
     <EmbeddedResource Include="UserControls\UC_Settings.resx">
       <DependentUpon>UC_Settings.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Database\key\monkeymacro-2e19a-firebase-adminsdk-kumu8-2f4f736de4.json" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -252,7 +255,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resoureces\Icons\" />
+    <Folder Include="Resources\Icons\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="protos\google\api\annotations.proto" />
@@ -311,17 +314,17 @@
     <None Include="protos\google\type\postal_address.proto" />
     <None Include="protos\google\type\quaternion.proto" />
     <None Include="protos\google\type\timeofday.proto" />
-    <None Include="Resoureces\Images\back.png" />
-    <Content Include="Resoureces\Images\logo_monkey.png" />
-    <Content Include="Resoureces\Images\menu.png" />
-    <Content Include="Resoureces\Images\plus.png" />
-    <Content Include="Resoureces\Images\setting.png" />
-    <Content Include="Resoureces\Images\imageSources.txt" />
-    <Content Include="Resoureces\Images\white_cross.png" />
-    <Content Include="Resoureces\Images\white_delete.png" />
-    <Content Include="Resoureces\Images\white_edit.png" />
-    <Content Include="Resoureces\Images\white_minus.png" />
-    <Content Include="Resoureces\Images\white_angle_down.png" />
+    <None Include="Resources\Images\back.png" />
+    <Content Include="Resources\Images\logo_monkey.png" />
+    <Content Include="Resources\Images\menu.png" />
+    <Content Include="Resources\Images\plus.png" />
+    <Content Include="Resources\Images\setting.png" />
+    <Content Include="Resources\Images\imageSources.txt" />
+    <Content Include="Resources\Images\white_cross.png" />
+    <Content Include="Resources\Images\white_delete.png" />
+    <Content Include="Resources\Images\white_edit.png" />
+    <Content Include="Resources\Images\white_minus.png" />
+    <Content Include="Resources\Images\white_angle_down.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

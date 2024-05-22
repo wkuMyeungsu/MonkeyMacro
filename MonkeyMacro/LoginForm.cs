@@ -14,15 +14,19 @@ namespace MonkeyMacro
     {
         private bool isDragging;
         private Point draggingStartPoint;
+        private DataController dataController;
 
-        string userName;
-        string password;
+        public string UserName { get; private set; }
+        public string Password { get; private set; }
 
         public LoginForm()
         {
             InitializeComponent();
             InitializeLayout();
             InitializeEventHandlers();
+
+            // DataController의 인스턴스를 가져와서 할당
+            dataController = DataController.Instance;
         }
 
         private void InitializeLayout()
@@ -103,18 +107,14 @@ namespace MonkeyMacro
             Application.Exit();
         }
 
-        private void LoginForm_Load(object sender, EventArgs e)
+        private async void button_login_Click(object sender, EventArgs e)
         {
+            UserName = textBox_userName.Text;
+            Password = textBox_passWord.Text;
 
-        }
+            bool accountValid = await dataController.CheckUserAccount(UserName, Password);
 
-        private void button_login_Click(object sender, EventArgs e)
-        {
-            userName = textBox_userName.Text;
-            password = textBox_passWord.Text;
-
-            // 임시 아이디
-            if(userName == "admin" && password == "1234")
+            if (accountValid)
             {
                 this.DialogResult = DialogResult.OK;
             }else

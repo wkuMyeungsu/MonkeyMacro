@@ -138,7 +138,6 @@
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
-            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.panel_titleBar.ResumeLayout(false);
             this.panel_titleBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButton_exit)).EndInit();

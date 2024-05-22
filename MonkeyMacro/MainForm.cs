@@ -1,13 +1,16 @@
-﻿using MonkeyMacro.UserControls;
+﻿using Google.Cloud.Firestore;
+using MonkeyMacro.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace MonkeyMacro
@@ -18,6 +21,9 @@ namespace MonkeyMacro
         private bool isHome;
         private Point draggingStartPoint;
 
+        private DataController dataController;
+        private UserData userData;
+
         public MainForm()
         {
             InitializeComponent();
@@ -25,17 +31,20 @@ namespace MonkeyMacro
             InitializeDefaultUserControl();
             InitializeAttributes();
 
-            this.Opacity = 0.9;
-
             LoginForm loginForm = new LoginForm();
             DialogResult result = loginForm.ShowDialog();
 
+            // DataController의 인스턴스를 가져와서 할당
+            dataController = DataController.Instance;
+
             // 로그인 성공시
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
+                userData = new UserData();
+                userData.UserName = loginForm.UserName;
+
                 this.Show();
             }
-
         }
 
         private void InitializeDefaultUserControl()
@@ -55,9 +64,15 @@ namespace MonkeyMacro
 
         private void InitializeAttributes()
         {
-            this.TopMost = true;
+            setUserSetting();
             isDragging = false;
             isHome = true;
+        }
+
+        private void setUserSetting()
+        {
+            this.TopMost = true;
+            this.Opacity = 90;
         }
 
         private void PanelTitleBar_MouseDown(object sender, MouseEventArgs e)
