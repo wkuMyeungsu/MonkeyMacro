@@ -136,7 +136,16 @@ namespace MonkeyMacro
 
         private void pictureBoxButtonExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            // 사용자 정보 저장 함수 호출
+            SaveUserInfo();
+
+            this.Close();
+        }
+
+        private void SaveUserInfo()
+        {
+            // 나중에 작업 할 것임
+            throw new NotImplementedException();
         }
 
         private void pictureBoxButtonMinimize_Click(object sender, EventArgs e)

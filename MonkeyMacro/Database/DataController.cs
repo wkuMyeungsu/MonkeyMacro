@@ -30,7 +30,7 @@ public class DataController
         // DB 초기화
         string firebaseID = "monkeymacro-2e19a";
 
-        string baseDirectory = @"D:\Programming\Development\Projects\MonkeyMacro\MonkeyMacro\";
+        string baseDirectory = @"D:\Programming\Development\Projects\MonkeyMacro\MonkeyMacro\"; // 자기 프로젝트 경로로 변경
         string keyDirectory = Path.Combine(baseDirectory, "Database", "key");
         string keyName = "monkeymacro-2e19a-firebase-adminsdk-kumu8-2f4f736de4.json";
         string keyPath = Path.Combine(keyDirectory, keyName);
