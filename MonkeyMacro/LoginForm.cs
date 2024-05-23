@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace MonkeyMacro
@@ -54,7 +49,7 @@ namespace MonkeyMacro
 
         private void textBox_userName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == (char)Keys.Enter)
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 textBox_passWord.Focus();
 
@@ -109,18 +104,49 @@ namespace MonkeyMacro
 
         private async void button_login_Click(object sender, EventArgs e)
         {
-            UserName = textBox_userName.Text;
-            Password = textBox_passWord.Text;
+            UserName = textBox_userName.Text.Trim(); // 공백제거
+            Password = textBox_passWord.Text.Trim(); // 공백제거
+
+            if (!IsValidUserName(UserName) || !IsValidPassword(Password))
+            {
+                MessageBox.Show("유효한 아이디와 비밀번호를 입력해 주세요.");
+                return;
+            }
 
             bool accountValid = await dataController.CheckUserAccount(UserName, Password);
 
             if (accountValid)
             {
                 this.DialogResult = DialogResult.OK;
-            }else
-            {
-                MessageBox.Show("잘못된 아이디 또는 비밀번호 입니다.");
             }
+            else
+            {
+                MessageBox.Show("존재하지 않는 아이디 또는 비밀번호 입니다.");
+            }
+        }
+
+        private bool IsValidUserName(string userName)
+        {
+            if (string.IsNullOrEmpty(userName))
+            {
+                return false;
+            }
+
+            // 알파벳 소문자로 시작하고, 알파벳 소문자와 숫자만 허용, 최소 4글자 이상
+            Regex regex = new Regex("^[a-z][a-z0-9]{3,}$");
+            return regex.IsMatch(userName);
+        }
+
+        private bool IsValidPassword(string password)
+        {
+            if (string.IsNullOrEmpty(password))
+            {
+                return false;
+            }
+
+            // 알파벳 소문자와 숫자만 허용, 최소 4글자 이상
+            Regex regex = new Regex("^[a-z0-9]{4,}$");
+            return regex.IsMatch(password);
         }
     }
 }
