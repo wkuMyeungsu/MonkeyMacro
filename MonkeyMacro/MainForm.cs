@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -23,6 +24,14 @@ namespace MonkeyMacro
 
         private DataController dataController;
         private UserData userData;
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint processId);
+
+        private Timer timer;
 
         public MainForm()
         {
@@ -45,6 +54,10 @@ namespace MonkeyMacro
 
                 this.Show();
             }
+            timer = new Timer();
+            timer.Interval = 1000; // 1초마다 업데이트
+            timer.Tick += Timer_Tick;
+            timer.Start();
         }
 
         private void InitializeDefaultUserControl()
@@ -193,6 +206,46 @@ namespace MonkeyMacro
 
             MessageBox.Show(processInfo.ToString(), "Recently Started Processes", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // 활성화된 창의 프로세스 이름을 라벨에 설정
+            string processName = GetActiveWindowProcessName();
+            label_menuInfo.Text = "Tracing: " + processName;
+        }
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_ACTIVATE = 0x0006;
+            const int WM_SETFOCUS = 0x0007;
+
+            if (m.Msg == WM_ACTIVATE || m.Msg == WM_SETFOCUS)
+            {
+                // 활성 창의 프로세스 이름을 가져와 라벨에 설정
+                string processname = GetActiveWindowProcessName();
+                label_menuInfo.Text = "Tracing: " + processname;
+            }
+
+            base.WndProc(ref m);
+        }
+
+        private string GetActiveWindowProcessName()
+        {
+            IntPtr hWnd = GetForegroundWindow();
+            if (hWnd == IntPtr.Zero)
+                return "No active window";
+
+            uint processId;
+            GetWindowThreadProcessId(hWnd, out processId);
+
+            try
+            {
+                Process process = Process.GetProcessById((int)processId);
+                return process.ProcessName;
+            }
+            catch (ArgumentException)
+            {
+                return "Unknown";
+            }
         }
     }
 }
