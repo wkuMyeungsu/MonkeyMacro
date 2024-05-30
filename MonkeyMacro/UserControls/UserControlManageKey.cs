@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MonkeyMacro.UserControls
 {
-    public partial class UC_ManageKey : UserControl
+    public partial class UserControlManageKey : UserControl
     {
-        public UC_ManageKey()
+        public UserControlManageKey()
         {
             InitializeComponent();
         }

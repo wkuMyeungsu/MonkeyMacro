@@ -28,36 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel_titleBar = new System.Windows.Forms.Panel();
+            this.panelTitleBar = new System.Windows.Forms.Panel();
             this.label_title = new System.Windows.Forms.Label();
             this.panel_menu = new System.Windows.Forms.Panel();
-            this.label_menuInfo = new System.Windows.Forms.Label();
-            this.panel_container = new System.Windows.Forms.Panel();
-            this.button_utility = new System.Windows.Forms.Button();
+            this.labelMenuInfo = new System.Windows.Forms.Label();
+            this.panelContainer = new System.Windows.Forms.Panel();
+            this.buttonUtility = new System.Windows.Forms.Button();
             this.button_manageKeys = new System.Windows.Forms.Button();
             this.button_settings = new System.Windows.Forms.Button();
-            this.pictureBoxButton_minimize = new System.Windows.Forms.PictureBox();
-            this.pictureBoxButton_exit = new System.Windows.Forms.PictureBox();
+            this.pictureBoxButtonMinimize = new System.Windows.Forms.PictureBox();
+            this.pictureBoxButtonExit = new System.Windows.Forms.PictureBox();
             this.pictureBox_logo = new System.Windows.Forms.PictureBox();
-            this.panel_titleBar.SuspendLayout();
+            this.panelTitleBar.SuspendLayout();
             this.panel_menu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButton_minimize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButton_exit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonMinimize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).BeginInit();
             this.SuspendLayout();
             // 
             // panel_titleBar
             // 
-            this.panel_titleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(55)))), ((int)(((byte)(91)))));
-            this.panel_titleBar.Controls.Add(this.pictureBoxButton_minimize);
-            this.panel_titleBar.Controls.Add(this.pictureBoxButton_exit);
-            this.panel_titleBar.Controls.Add(this.label_title);
-            this.panel_titleBar.Controls.Add(this.pictureBox_logo);
-            this.panel_titleBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_titleBar.Location = new System.Drawing.Point(0, 0);
-            this.panel_titleBar.Name = "panel_titleBar";
-            this.panel_titleBar.Size = new System.Drawing.Size(407, 48);
-            this.panel_titleBar.TabIndex = 0;
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(55)))), ((int)(((byte)(91)))));
+            this.panelTitleBar.Controls.Add(this.pictureBoxButtonMinimize);
+            this.panelTitleBar.Controls.Add(this.pictureBoxButtonExit);
+            this.panelTitleBar.Controls.Add(this.label_title);
+            this.panelTitleBar.Controls.Add(this.pictureBox_logo);
+            this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTitleBar.Location = new System.Drawing.Point(0, 0);
+            this.panelTitleBar.Name = "panel_titleBar";
+            this.panelTitleBar.Size = new System.Drawing.Size(407, 48);
+            this.panelTitleBar.TabIndex = 0;
             // 
             // label_title
             // 
@@ -73,8 +73,8 @@
             // panel_menu
             // 
             this.panel_menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.panel_menu.Controls.Add(this.label_menuInfo);
-            this.panel_menu.Controls.Add(this.button_utility);
+            this.panel_menu.Controls.Add(this.labelMenuInfo);
+            this.panel_menu.Controls.Add(this.buttonUtility);
             this.panel_menu.Controls.Add(this.button_manageKeys);
             this.panel_menu.Controls.Add(this.button_settings);
             this.panel_menu.Dock = System.Windows.Forms.DockStyle.Top;
@@ -85,31 +85,31 @@
             // 
             // label_menuInfo
             // 
-            this.label_menuInfo.AutoSize = true;
-            this.label_menuInfo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_menuInfo.Location = new System.Drawing.Point(5, 7);
-            this.label_menuInfo.Name = "label_menuInfo";
-            this.label_menuInfo.Size = new System.Drawing.Size(120, 21);
-            this.label_menuInfo.TabIndex = 3;
-            this.label_menuInfo.Text = "Tracing : none";
+            this.labelMenuInfo.AutoSize = true;
+            this.labelMenuInfo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMenuInfo.Location = new System.Drawing.Point(5, 7);
+            this.labelMenuInfo.Name = "label_menuInfo";
+            this.labelMenuInfo.Size = new System.Drawing.Size(120, 21);
+            this.labelMenuInfo.TabIndex = 3;
+            this.labelMenuInfo.Text = "Tracing : none";
             // 
             // panel_container
             // 
-            this.panel_container.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_container.Location = new System.Drawing.Point(0, 84);
-            this.panel_container.Name = "panel_container";
-            this.panel_container.Size = new System.Drawing.Size(407, 447);
-            this.panel_container.TabIndex = 2;
+            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContainer.Location = new System.Drawing.Point(0, 84);
+            this.panelContainer.Name = "panel_container";
+            this.panelContainer.Size = new System.Drawing.Size(407, 447);
+            this.panelContainer.TabIndex = 2;
             // 
             // button_utility
             // 
-            this.button_utility.Image = global::MonkeyMacro.Properties.Resources.plus;
-            this.button_utility.Location = new System.Drawing.Point(304, 3);
-            this.button_utility.Name = "button_utility";
-            this.button_utility.Size = new System.Drawing.Size(30, 30);
-            this.button_utility.TabIndex = 2;
-            this.button_utility.UseVisualStyleBackColor = true;
-            this.button_utility.Click += new System.EventHandler(this.buttonUtility_Click);
+            this.buttonUtility.Image = global::MonkeyMacro.Properties.Resources.plus;
+            this.buttonUtility.Location = new System.Drawing.Point(304, 3);
+            this.buttonUtility.Name = "button_utility";
+            this.buttonUtility.Size = new System.Drawing.Size(30, 30);
+            this.buttonUtility.TabIndex = 2;
+            this.buttonUtility.UseVisualStyleBackColor = true;
+            this.buttonUtility.Click += new System.EventHandler(this.OnButtonUtilityClick);
             // 
             // button_manageKeys
             // 
@@ -119,7 +119,7 @@
             this.button_manageKeys.Size = new System.Drawing.Size(30, 30);
             this.button_manageKeys.TabIndex = 1;
             this.button_manageKeys.UseVisualStyleBackColor = true;
-            this.button_manageKeys.Click += new System.EventHandler(this.buttonManageKeys_Click);
+            this.button_manageKeys.Click += new System.EventHandler(this.OnButtonManageKeysClick);
             // 
             // button_settings
             // 
@@ -129,29 +129,29 @@
             this.button_settings.Size = new System.Drawing.Size(30, 30);
             this.button_settings.TabIndex = 0;
             this.button_settings.UseVisualStyleBackColor = true;
-            this.button_settings.Click += new System.EventHandler(this.buttonSettings_Click);
+            this.button_settings.Click += new System.EventHandler(this.OnButtonSettingsClick);
             // 
             // pictureBoxButton_minimize
             // 
-            this.pictureBoxButton_minimize.Image = global::MonkeyMacro.Properties.Resources.white_minus;
-            this.pictureBoxButton_minimize.Location = new System.Drawing.Point(356, 8);
-            this.pictureBoxButton_minimize.Name = "pictureBoxButton_minimize";
-            this.pictureBoxButton_minimize.Size = new System.Drawing.Size(16, 16);
-            this.pictureBoxButton_minimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxButton_minimize.TabIndex = 4;
-            this.pictureBoxButton_minimize.TabStop = false;
-            this.pictureBoxButton_minimize.Click += new System.EventHandler(this.pictureBoxButtonMinimize_Click);
+            this.pictureBoxButtonMinimize.Image = global::MonkeyMacro.Properties.Resources.white_minus;
+            this.pictureBoxButtonMinimize.Location = new System.Drawing.Point(356, 8);
+            this.pictureBoxButtonMinimize.Name = "pictureBoxButton_minimize";
+            this.pictureBoxButtonMinimize.Size = new System.Drawing.Size(16, 16);
+            this.pictureBoxButtonMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxButtonMinimize.TabIndex = 4;
+            this.pictureBoxButtonMinimize.TabStop = false;
+            this.pictureBoxButtonMinimize.Click += new System.EventHandler(this.OnPictureBoxButtonMinimizeClick);
             // 
             // pictureBoxButton_exit
             // 
-            this.pictureBoxButton_exit.Image = global::MonkeyMacro.Properties.Resources.white_cross;
-            this.pictureBoxButton_exit.Location = new System.Drawing.Point(384, 8);
-            this.pictureBoxButton_exit.Name = "pictureBoxButton_exit";
-            this.pictureBoxButton_exit.Size = new System.Drawing.Size(16, 16);
-            this.pictureBoxButton_exit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxButton_exit.TabIndex = 2;
-            this.pictureBoxButton_exit.TabStop = false;
-            this.pictureBoxButton_exit.Click += new System.EventHandler(this.pictureBoxButtonExit_Click);
+            this.pictureBoxButtonExit.Image = global::MonkeyMacro.Properties.Resources.white_cross;
+            this.pictureBoxButtonExit.Location = new System.Drawing.Point(384, 8);
+            this.pictureBoxButtonExit.Name = "pictureBoxButton_exit";
+            this.pictureBoxButtonExit.Size = new System.Drawing.Size(16, 16);
+            this.pictureBoxButtonExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxButtonExit.TabIndex = 2;
+            this.pictureBoxButtonExit.TabStop = false;
+            this.pictureBoxButtonExit.Click += new System.EventHandler(this.OnPictureBoxButtonExitClick);
             // 
             // pictureBox_logo
             // 
@@ -168,19 +168,19 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(407, 531);
-            this.Controls.Add(this.panel_container);
+            this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panel_menu);
-            this.Controls.Add(this.panel_titleBar);
+            this.Controls.Add(this.panelTitleBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.panel_titleBar.ResumeLayout(false);
-            this.panel_titleBar.PerformLayout();
+            this.panelTitleBar.ResumeLayout(false);
+            this.panelTitleBar.PerformLayout();
             this.panel_menu.ResumeLayout(false);
             this.panel_menu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButton_minimize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButton_exit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonMinimize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonExit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).EndInit();
             this.ResumeLayout(false);
 
@@ -188,17 +188,17 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel_titleBar;
+        private System.Windows.Forms.Panel panelTitleBar;
         private System.Windows.Forms.PictureBox pictureBox_logo;
         private System.Windows.Forms.Panel panel_menu;
         private System.Windows.Forms.Label label_title;
-        private System.Windows.Forms.Panel panel_container;
-        private System.Windows.Forms.Button button_utility;
+        private System.Windows.Forms.Panel panelContainer;
+        private System.Windows.Forms.Button buttonUtility;
         private System.Windows.Forms.Button button_manageKeys;
         private System.Windows.Forms.Button button_settings;
-        private System.Windows.Forms.PictureBox pictureBoxButton_exit;
-        private System.Windows.Forms.PictureBox pictureBoxButton_minimize;
-        private System.Windows.Forms.Label label_menuInfo;
+        private System.Windows.Forms.PictureBox pictureBoxButtonExit;
+        private System.Windows.Forms.PictureBox pictureBoxButtonMinimize;
+        private System.Windows.Forms.Label labelMenuInfo;
     }
 }
 

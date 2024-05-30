@@ -28,69 +28,69 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel_titleBar = new System.Windows.Forms.Panel();
-            this.label_title = new System.Windows.Forms.Label();
-            this.pictureBoxButton_exit = new System.Windows.Forms.PictureBox();
-            this.textBox_passWord = new System.Windows.Forms.TextBox();
-            this.textBox_userName = new System.Windows.Forms.TextBox();
+            this.panelTitleBar = new System.Windows.Forms.Panel();
+            this.labelTitle = new System.Windows.Forms.Label();
+            this.pictureBoxButtonExit = new System.Windows.Forms.PictureBox();
+            this.textBoxPassWord = new System.Windows.Forms.TextBox();
+            this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.label_passWord = new System.Windows.Forms.Label();
             this.label_userName = new System.Windows.Forms.Label();
-            this.button_login = new System.Windows.Forms.Button();
+            this.buttonLogin = new System.Windows.Forms.Button();
             this.button_SignUp = new System.Windows.Forms.Button();
-            this.panel_titleBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButton_exit)).BeginInit();
+            this.panelTitleBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonExit)).BeginInit();
             this.SuspendLayout();
             // 
             // panel_titleBar
             // 
-            this.panel_titleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(55)))), ((int)(((byte)(91)))));
-            this.panel_titleBar.Controls.Add(this.label_title);
-            this.panel_titleBar.Controls.Add(this.pictureBoxButton_exit);
-            this.panel_titleBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_titleBar.Location = new System.Drawing.Point(0, 0);
-            this.panel_titleBar.Name = "panel_titleBar";
-            this.panel_titleBar.Size = new System.Drawing.Size(413, 65);
-            this.panel_titleBar.TabIndex = 1;
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(55)))), ((int)(((byte)(91)))));
+            this.panelTitleBar.Controls.Add(this.labelTitle);
+            this.panelTitleBar.Controls.Add(this.pictureBoxButtonExit);
+            this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTitleBar.Location = new System.Drawing.Point(0, 0);
+            this.panelTitleBar.Name = "panel_titleBar";
+            this.panelTitleBar.Size = new System.Drawing.Size(413, 65);
+            this.panelTitleBar.TabIndex = 1;
             // 
             // label_title
             // 
-            this.label_title.AutoSize = true;
-            this.label_title.Font = new System.Drawing.Font("Century Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_title.ForeColor = System.Drawing.Color.White;
-            this.label_title.Location = new System.Drawing.Point(154, 20);
-            this.label_title.Name = "label_title";
-            this.label_title.Size = new System.Drawing.Size(100, 32);
-            this.label_title.TabIndex = 3;
-            this.label_title.Text = "Sign In";
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Font = new System.Drawing.Font("Century Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitle.ForeColor = System.Drawing.Color.White;
+            this.labelTitle.Location = new System.Drawing.Point(154, 20);
+            this.labelTitle.Name = "label_title";
+            this.labelTitle.Size = new System.Drawing.Size(100, 32);
+            this.labelTitle.TabIndex = 3;
+            this.labelTitle.Text = "Sign In";
             // 
             // pictureBoxButton_exit
             // 
-            this.pictureBoxButton_exit.Image = global::MonkeyMacro.Properties.Resources.white_cross;
-            this.pictureBoxButton_exit.Location = new System.Drawing.Point(388, 8);
-            this.pictureBoxButton_exit.Name = "pictureBoxButton_exit";
-            this.pictureBoxButton_exit.Size = new System.Drawing.Size(16, 16);
-            this.pictureBoxButton_exit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxButton_exit.TabIndex = 2;
-            this.pictureBoxButton_exit.TabStop = false;
-            this.pictureBoxButton_exit.Click += new System.EventHandler(this.pictureBoxButton_exit_Click);
+            this.pictureBoxButtonExit.Image = global::MonkeyMacro.Properties.Resources.white_cross;
+            this.pictureBoxButtonExit.Location = new System.Drawing.Point(388, 8);
+            this.pictureBoxButtonExit.Name = "pictureBoxButton_exit";
+            this.pictureBoxButtonExit.Size = new System.Drawing.Size(16, 16);
+            this.pictureBoxButtonExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxButtonExit.TabIndex = 2;
+            this.pictureBoxButtonExit.TabStop = false;
+            this.pictureBoxButtonExit.Click += new System.EventHandler(this.OnPictureBoxButtonExitClick);
             // 
             // textBox_passWord
             // 
-            this.textBox_passWord.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.textBox_passWord.Location = new System.Drawing.Point(112, 176);
-            this.textBox_passWord.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox_passWord.Name = "textBox_passWord";
-            this.textBox_passWord.Size = new System.Drawing.Size(192, 23);
-            this.textBox_passWord.TabIndex = 13;
+            this.textBoxPassWord.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.textBoxPassWord.Location = new System.Drawing.Point(112, 176);
+            this.textBoxPassWord.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxPassWord.Name = "textBox_passWord";
+            this.textBoxPassWord.Size = new System.Drawing.Size(192, 23);
+            this.textBoxPassWord.TabIndex = 13;
             // 
             // textBox_userName
             // 
-            this.textBox_userName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_userName.Location = new System.Drawing.Point(112, 124);
-            this.textBox_userName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox_userName.Name = "textBox_userName";
-            this.textBox_userName.Size = new System.Drawing.Size(192, 23);
-            this.textBox_userName.TabIndex = 12;
+            this.textBoxUserName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxUserName.Location = new System.Drawing.Point(112, 124);
+            this.textBoxUserName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxUserName.Name = "textBox_userName";
+            this.textBoxUserName.Size = new System.Drawing.Size(192, 23);
+            this.textBoxUserName.TabIndex = 12;
             // 
             // label_passWord
             // 
@@ -114,14 +114,14 @@
             // 
             // button_login
             // 
-            this.button_login.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.button_login.Location = new System.Drawing.Point(112, 207);
-            this.button_login.Name = "button_login";
-            this.button_login.Size = new System.Drawing.Size(95, 28);
-            this.button_login.TabIndex = 15;
-            this.button_login.Text = "Login";
-            this.button_login.UseVisualStyleBackColor = true;
-            this.button_login.Click += new System.EventHandler(this.button_login_Click);
+            this.buttonLogin.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.buttonLogin.Location = new System.Drawing.Point(112, 207);
+            this.buttonLogin.Name = "button_login";
+            this.buttonLogin.Size = new System.Drawing.Size(95, 28);
+            this.buttonLogin.TabIndex = 15;
+            this.buttonLogin.Text = "Login";
+            this.buttonLogin.UseVisualStyleBackColor = true;
+            this.buttonLogin.Click += new System.EventHandler(this.OnButtonLoginClick);
             // 
             // button_SignUp
             // 
@@ -139,20 +139,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 293);
             this.Controls.Add(this.button_SignUp);
-            this.Controls.Add(this.button_login);
-            this.Controls.Add(this.textBox_passWord);
-            this.Controls.Add(this.textBox_userName);
+            this.Controls.Add(this.buttonLogin);
+            this.Controls.Add(this.textBoxPassWord);
+            this.Controls.Add(this.textBoxUserName);
             this.Controls.Add(this.label_passWord);
             this.Controls.Add(this.label_userName);
-            this.Controls.Add(this.panel_titleBar);
+            this.Controls.Add(this.panelTitleBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
-            this.panel_titleBar.ResumeLayout(false);
-            this.panel_titleBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButton_exit)).EndInit();
+            this.panelTitleBar.ResumeLayout(false);
+            this.panelTitleBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonExit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,14 +160,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel_titleBar;
-        private System.Windows.Forms.PictureBox pictureBoxButton_exit;
-        private System.Windows.Forms.Label label_title;
-        private System.Windows.Forms.TextBox textBox_passWord;
-        private System.Windows.Forms.TextBox textBox_userName;
+        private System.Windows.Forms.Panel panelTitleBar;
+        private System.Windows.Forms.PictureBox pictureBoxButtonExit;
+        private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.TextBox textBoxPassWord;
+        private System.Windows.Forms.TextBox textBoxUserName;
         private System.Windows.Forms.Label label_passWord;
         private System.Windows.Forms.Label label_userName;
-        private System.Windows.Forms.Button button_login;
+        private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.Button button_SignUp;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace MonkeyMacro.UserControls
 {
-    partial class UC_ManageKey
+    partial class UserControlManageKey
     {
         /// <summary> 
         /// 필수 디자이너 변수입니다.

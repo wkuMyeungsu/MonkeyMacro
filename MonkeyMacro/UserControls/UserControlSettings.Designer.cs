@@ -1,6 +1,6 @@
 ﻿namespace MonkeyMacro.UserControls
 {
-    partial class UC_Settings
+    partial class UserControlSettings
     {
         /// <summary> 
         /// 필수 디자이너 변수입니다.
@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.labelTestSettings = new System.Windows.Forms.Label();
-            this.Track_Opacity = new System.Windows.Forms.TrackBar();
+            this.TrackOpacity = new System.Windows.Forms.TrackBar();
             this.Panel_Opacity = new System.Windows.Forms.GroupBox();
-            this.Label_Opacity = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.Track_Opacity)).BeginInit();
+            this.LabelOpacity = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackOpacity)).BeginInit();
             this.Panel_Opacity.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,21 +48,21 @@
             // 
             // Track_Opacity
             // 
-            this.Track_Opacity.Location = new System.Drawing.Point(6, 20);
-            this.Track_Opacity.Maximum = 100;
-            this.Track_Opacity.Minimum = 10;
-            this.Track_Opacity.Name = "Track_Opacity";
-            this.Track_Opacity.Size = new System.Drawing.Size(389, 45);
-            this.Track_Opacity.TabIndex = 2;
-            this.Track_Opacity.TickFrequency = 10;
-            this.Track_Opacity.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.Track_Opacity.Value = 20;
-            this.Track_Opacity.Scroll += new System.EventHandler(this.Opacity_Track_Scroll);
+            this.TrackOpacity.Location = new System.Drawing.Point(6, 20);
+            this.TrackOpacity.Maximum = 100;
+            this.TrackOpacity.Minimum = 10;
+            this.TrackOpacity.Name = "Track_Opacity";
+            this.TrackOpacity.Size = new System.Drawing.Size(389, 45);
+            this.TrackOpacity.TabIndex = 2;
+            this.TrackOpacity.TickFrequency = 10;
+            this.TrackOpacity.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.TrackOpacity.Value = 20;
+            this.TrackOpacity.Scroll += new System.EventHandler(this.OnOpacityTrackScroll);
             // 
             // Panel_Opacity
             // 
-            this.Panel_Opacity.Controls.Add(this.Label_Opacity);
-            this.Panel_Opacity.Controls.Add(this.Track_Opacity);
+            this.Panel_Opacity.Controls.Add(this.LabelOpacity);
+            this.Panel_Opacity.Controls.Add(this.TrackOpacity);
             this.Panel_Opacity.Location = new System.Drawing.Point(3, 3);
             this.Panel_Opacity.Name = "Panel_Opacity";
             this.Panel_Opacity.Size = new System.Drawing.Size(401, 102);
@@ -72,13 +72,13 @@
             // 
             // Label_Opacity
             // 
-            this.Label_Opacity.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Label_Opacity.Location = new System.Drawing.Point(337, 68);
-            this.Label_Opacity.Name = "Label_Opacity";
-            this.Label_Opacity.Size = new System.Drawing.Size(58, 23);
-            this.Label_Opacity.TabIndex = 3;
-            this.Label_Opacity.Text = "XX%";
-            this.Label_Opacity.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LabelOpacity.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.LabelOpacity.Location = new System.Drawing.Point(337, 68);
+            this.LabelOpacity.Name = "Label_Opacity";
+            this.LabelOpacity.Size = new System.Drawing.Size(58, 23);
+            this.LabelOpacity.TabIndex = 3;
+            this.LabelOpacity.Text = "XX%";
+            this.LabelOpacity.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // UC_Settings
             // 
@@ -88,8 +88,8 @@
             this.Controls.Add(this.labelTestSettings);
             this.Name = "UC_Settings";
             this.Size = new System.Drawing.Size(407, 447);
-            this.Load += new System.EventHandler(this.UC_Settings_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.Track_Opacity)).EndInit();
+            this.Load += new System.EventHandler(this.OnUserControlSettingsLoad);
+            ((System.ComponentModel.ISupportInitialize)(this.TrackOpacity)).EndInit();
             this.Panel_Opacity.ResumeLayout(false);
             this.Panel_Opacity.PerformLayout();
             this.ResumeLayout(false);
@@ -100,8 +100,8 @@
         #endregion
 
         private System.Windows.Forms.Label labelTestSettings;
-        private System.Windows.Forms.TrackBar Track_Opacity;
+        private System.Windows.Forms.TrackBar TrackOpacity;
         private System.Windows.Forms.GroupBox Panel_Opacity;
-        private System.Windows.Forms.Label Label_Opacity;
+        private System.Windows.Forms.Label LabelOpacity;
     }
 }

@@ -1,17 +1,8 @@
-﻿using Google.Cloud.Firestore;
-using MonkeyMacro.UserControls;
+﻿using MonkeyMacro.UserControls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Windows.Forms;
 
 namespace MonkeyMacro
@@ -31,7 +22,7 @@ namespace MonkeyMacro
         [DllImport("user32.dll")]
         private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint processId);
 
-        private Timer timer;
+        private Timer updateTimer;
 
         public MainForm()
         {
@@ -39,56 +30,66 @@ namespace MonkeyMacro
             InitializeEventHandlers();
             InitializeDefaultUserControl();
             InitializeAttributes();
+            ShowLoginForm();
 
+            InitializeUpdateTimer();
+        }
+
+        private void InitializeUpdateTimer()
+        {
+            updateTimer = new Timer();
+            updateTimer.Interval = 1000; // 1초마다 업데이트
+            updateTimer.Tick += OnUpdateTimerTick;
+            updateTimer.Start();
+        }
+
+        private void ShowLoginForm()
+        {
             LoginForm loginForm = new LoginForm();
             DialogResult result = loginForm.ShowDialog();
 
-            // DataController의 인스턴스를 가져와서 할당
             dataController = DataController.Instance;
 
-            // 로그인 성공시
             if (result == DialogResult.OK)
             {
                 userData = new UserData();
                 userData.UserName = loginForm.UserName;
-
                 this.Show();
+            }else
+            {
+                this.Close();
             }
-            timer = new Timer();
-            timer.Interval = 1000; // 1초마다 업데이트
-            timer.Tick += Timer_Tick;
-            timer.Start();
         }
 
         private void InitializeDefaultUserControl()
         {
-            UC_Home uc = new UC_Home();
-            switchUserControl(uc);
+            UserControlHome uc = new UserControlHome();
+            SwitchUserControl(uc);
         }
 
         private void InitializeEventHandlers()
         {
-            panel_titleBar.MouseDown += PanelTitleBar_MouseDown;
-            panel_titleBar.MouseMove += PanelTitleBar_MouseMove;
-            panel_titleBar.MouseUp += PanelTitleBar_MouseUp;
-            pictureBoxButton_exit.MouseMove += pictureBoxButton_Move;
-            pictureBoxButton_minimize.MouseMove += pictureBoxButton_Move;
+            panelTitleBar.MouseDown += OnPanelTitleBarMouseDown;
+            panelTitleBar.MouseMove += OnPanelTitleBarMouseMove;
+            panelTitleBar.MouseUp += OnPanelTitleBarMouseUp;
+            pictureBoxButtonExit.MouseMove += OnPictureBoxButtonMove;
+            pictureBoxButtonMinimize.MouseMove += OnPictureBoxButtonMove;
         }
 
         private void InitializeAttributes()
         {
-            setUserSetting();
+            SetUserSettings();
             isDragging = false;
             isHome = true;
         }
 
-        private void setUserSetting()
+        private void SetUserSettings()
         {
             this.TopMost = true;
             this.Opacity = 90;
         }
 
-        private void PanelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        private void OnPanelTitleBarMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -97,12 +98,12 @@ namespace MonkeyMacro
             }
         }
 
-        private void PanelTitleBar_MouseUp(object sender, MouseEventArgs e)
+        private void OnPanelTitleBarMouseUp(object sender, MouseEventArgs e)
         {
             isDragging = false;
         }
 
-        private void PanelTitleBar_MouseMove(object sender, MouseEventArgs e)
+        private void OnPanelTitleBarMouseMove(object sender, MouseEventArgs e)
         {
             if (isDragging)
             {
@@ -111,15 +112,15 @@ namespace MonkeyMacro
             }
         }
 
-        private void switchUserControl(UserControl userControl)
+        private void SwitchUserControl(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;
 
-            panel_container.Controls.Clear();
-            panel_container.Controls.Add(userControl);
+            panelContainer.Controls.Clear();
+            panelContainer.Controls.Add(userControl);
             userControl.BringToFront();
 
-            if (userControl.GetType() == typeof(UC_Home))
+            if (userControl.GetType() == typeof(UserControlHome))
             {
                 isHome = true;
             }
@@ -127,58 +128,67 @@ namespace MonkeyMacro
             {
                 isHome = false;
             }
-            changeUtilityButton(isHome);
+            ChangeUtilityButton(isHome);
         }
 
-        private void changeUtilityButton(bool isHome)
+        private void ChangeUtilityButton(bool isHome)
         {
             if (isHome)
             {
-                button_utility.Image = Properties.Resources.plus;
+                buttonUtility.Image = Properties.Resources.plus;
             }
             else
             {
-                button_utility.Image = Properties.Resources.back;
+                buttonUtility.Image = Properties.Resources.back;
             }
         }
 
-        private void pictureBoxButton_Move(object sender, MouseEventArgs e)
+        private void OnPictureBoxButtonMove(object sender, MouseEventArgs e)
         {
             Cursor.Current = Cursors.Hand;
         }
 
-        private void pictureBoxButtonExit_Click(object sender, EventArgs e)
+        private void OnPictureBoxButtonExitClick(object sender, EventArgs e)
+        {
+            // 사용자 정보 저장 함수 호출
+            ExitApplication();
+        }
+
+        private void ExitApplication()
         {
             // 사용자 정보 저장 함수 호출
             SaveUserInfo();
 
-            this.Close();
+            // 종료 확인 메시지 박스
+            DialogResult result = MessageBox.Show("프로그램을 종료하시겠습니까?", "종료 확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void SaveUserInfo()
         {
-            // 나중에 작업 할 것임
-            throw new NotImplementedException();
         }
 
-        private void pictureBoxButtonMinimize_Click(object sender, EventArgs e)
+        private void OnPictureBoxButtonMinimizeClick(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void buttonManageKeys_Click(object sender, EventArgs e)
+        private void OnButtonManageKeysClick(object sender, EventArgs e)
         {
-            UC_ManageKey uc = new UC_ManageKey();
-            switchUserControl(uc);
+            UserControlManageKey uc = new UserControlManageKey();
+            SwitchUserControl(uc);
         }
 
-        private void buttonSettings_Click(object sender, EventArgs e)
+        private void OnButtonSettingsClick(object sender, EventArgs e)
         {
-            UC_Settings uc = new UC_Settings();
-            switchUserControl(uc);
+            UserControlSettings uc = new UserControlSettings();
+            SwitchUserControl(uc);
         }
 
-        private void buttonUtility_Click(object sender, EventArgs e)
+        private void OnButtonUtilityClick(object sender, EventArgs e)
         {
             if (isHome)
             {
@@ -187,55 +197,38 @@ namespace MonkeyMacro
             }
             else
             {
-                UC_Home uc = new UC_Home();
-                switchUserControl(uc);
+                UserControlHome uc = new UserControlHome();
+                SwitchUserControl(uc);
             }
         }
 
-        private void testFunc(object sender, EventArgs e)
-        {
-            Process[] processes = Process.GetProcesses()
-                                         .OrderByDescending(p => p.StartTime)
-                                         .ToArray();
-
-            StringBuilder processInfo = new StringBuilder();
-            foreach (Process process in processes)
-            {
-                processInfo.AppendLine($"{process.ProcessName} - {process.StartTime}");
-            }
-
-            MessageBox.Show(processInfo.ToString(), "Recently Started Processes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        }
-        private void Timer_Tick(object sender, EventArgs e)
+        private void OnUpdateTimerTick(object sender, EventArgs e)
         {
             // 활성화된 창의 프로세스 이름을 라벨에 설정
-            string processName = GetActiveWindowProcessName();
-            label_menuInfo.Text = "Tracing: " + processName;
+            labelMenuInfo.Text = "Tracing: " + GetActiveWindowProcessName();
         }
-        protected override void WndProc(ref Message m)
-        {
-            const int WM_ACTIVATE = 0x0006;
-            const int WM_SETFOCUS = 0x0007;
 
-            if (m.Msg == WM_ACTIVATE || m.Msg == WM_SETFOCUS)
+        protected override void WndProc(ref Message message)
+        {
+            const int WindowActivate = 0x0006;
+            const int SetFocus = 0x0007;
+
+            if (message.Msg == WindowActivate || message.Msg == SetFocus)
             {
                 // 활성 창의 프로세스 이름을 가져와 라벨에 설정
-                string processname = GetActiveWindowProcessName();
-                label_menuInfo.Text = "Tracing: " + processname;
+                labelMenuInfo.Text = "Tracing: " + GetActiveWindowProcessName();
             }
 
-            base.WndProc(ref m);
+            base.WndProc(ref message);
         }
 
         private string GetActiveWindowProcessName()
         {
-            IntPtr hWnd = GetForegroundWindow();
-            if (hWnd == IntPtr.Zero)
+            IntPtr windowHandle = GetForegroundWindow();
+            if (windowHandle == IntPtr.Zero)
                 return "No active window";
 
-            uint processId;
-            GetWindowThreadProcessId(hWnd, out processId);
+            GetWindowThreadProcessId(windowHandle, out uint processId);
 
             try
             {

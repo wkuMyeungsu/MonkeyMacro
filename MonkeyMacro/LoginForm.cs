@@ -29,52 +29,52 @@ namespace MonkeyMacro
             // LoginForm
             this.Opacity = 0.9;
 
-            // label_title
-            label_title.Left = (this.panel_titleBar.Width - label_title.Width) / 2;
-            label_title.Top = (this.panel_titleBar.Height - label_title.Height) / 2;
+            // labelTitle
+            labelTitle.Left = (this.panelTitleBar.Width - labelTitle.Width) / 2;
+            labelTitle.Top = (this.panelTitleBar.Height - labelTitle.Height) / 2;
 
-            // textBox_passWord
-            textBox_passWord.PasswordChar = '*';
+            // textBoxPassWord
+            textBoxPassWord.PasswordChar = '*';
         }
 
         private void InitializeEventHandlers()
         {
-            panel_titleBar.MouseDown += PanelTitleBar_MouseDown;
-            panel_titleBar.MouseMove += PanelTitleBar_MouseMove;
-            panel_titleBar.MouseUp += PanelTitleBar_MouseUp;
-            pictureBoxButton_exit.MouseMove += pictureBoxButton_Move;
-            textBox_userName.KeyPress += textBox_userName_KeyPress;
-            textBox_passWord.KeyPress += textBox_passWord_KeyPress;
+            panelTitleBar.MouseDown += OnPanelTitleBarMouseDown;
+            panelTitleBar.MouseMove += OnPanelTitleBarMouseMove;
+            panelTitleBar.MouseUp += OnPanelTitleBarMouseUp;
+            pictureBoxButtonExit.MouseMove += OnPictureBoxButtonMove;
+            textBoxUserName.KeyPress += OnTextBoxUserNameKeyPress;
+            textBoxPassWord.KeyPress += OnTextBoxPassWordKeyPress;
         }
 
-        private void textBox_userName_KeyPress(object sender, KeyPressEventArgs e)
+        private void OnTextBoxUserNameKeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                textBox_passWord.Focus();
+                textBoxPassWord.Focus();
 
                 // Enter 키 입력을 처리했음을 표시하여 경고음이 발생하지 않도록 함
                 e.Handled = true;
             }
         }
 
-        private void textBox_passWord_KeyPress(object sender, KeyPressEventArgs e)
+        private void OnTextBoxPassWordKeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                button_login.Focus();
+                buttonLogin.Focus();
 
                 // Enter 키 입력을 처리했음을 표시하여 경고음이 발생하지 않도록 함
                 e.Handled = true;
             }
         }
 
-        private void pictureBoxButton_Move(object sender, MouseEventArgs e)
+        private void OnPictureBoxButtonMove(object sender, MouseEventArgs e)
         {
             Cursor.Current = Cursors.Hand;
         }
 
-        private void PanelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        private void OnPanelTitleBarMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -83,12 +83,12 @@ namespace MonkeyMacro
             }
         }
 
-        private void PanelTitleBar_MouseUp(object sender, MouseEventArgs e)
+        private void OnPanelTitleBarMouseUp(object sender, MouseEventArgs e)
         {
             isDragging = false;
         }
 
-        private void PanelTitleBar_MouseMove(object sender, MouseEventArgs e)
+        private void OnPanelTitleBarMouseMove(object sender, MouseEventArgs e)
         {
             if (isDragging)
             {
@@ -97,15 +97,19 @@ namespace MonkeyMacro
             }
         }
 
-        private void pictureBoxButton_exit_Click(object sender, EventArgs e)
+        private void OnPictureBoxButtonExitClick(object sender, EventArgs e)
         {
-            Application.Exit();
+            // DialogResult를 Cancel로 설정하여 부모 폼에 알림
+            this.DialogResult = DialogResult.Cancel;
+
+            // 폼 닫기
+            this.Close();
         }
 
-        private async void button_login_Click(object sender, EventArgs e)
+        private async void OnButtonLoginClick(object sender, EventArgs e)
         {
-            UserName = textBox_userName.Text.Trim(); // 공백제거
-            Password = textBox_passWord.Text.Trim(); // 공백제거
+            UserName = textBoxUserName.Text.Trim(); // 공백제거
+            Password = textBoxPassWord.Text.Trim(); // 공백제거
 
             if (!IsValidUserName(UserName) || !IsValidPassword(Password))
             {

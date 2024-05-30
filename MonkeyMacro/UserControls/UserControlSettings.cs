@@ -12,28 +12,28 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MonkeyMacro.UserControls
 {
-    public partial class UC_Settings : UserControl
+    public partial class UserControlSettings : UserControl
     {
 
-        public UC_Settings()
+        public UserControlSettings()
         {
             InitializeComponent();
         }
-        private void UC_Settings_Load(object sender, EventArgs e)
+        private void OnUserControlSettingsLoad(object sender, EventArgs e)
         {
             if(ParentForm is MainForm mainForm)
             {
                 double mainFormOpacity = mainForm.Opacity;
                 int trackBarValue = (int)(mainFormOpacity * 100);
-                Track_Opacity.Value = trackBarValue;
-                Label_Opacity.Text = trackBarValue + "%";
+                TrackOpacity.Value = trackBarValue;
+                LabelOpacity.Text = trackBarValue + "%";
             }
         }
 
-        private void Opacity_Track_Scroll(object sender, EventArgs e)
+        private void OnOpacityTrackScroll(object sender, EventArgs e)
         {
-            Label_Opacity.Text = Track_Opacity.Value.ToString() + "%";
-            double opacityValue = (double)Track_Opacity.Value / 100;
+            LabelOpacity.Text = TrackOpacity.Value.ToString() + "%";
+            double opacityValue = (double)TrackOpacity.Value / 100;
             if (Application.OpenForms["MainForm"] is MainForm mainForm)
             {
                 mainForm.Opacity = opacityValue; // 메인폼의 투명도 값 설정
