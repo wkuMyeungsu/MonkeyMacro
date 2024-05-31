@@ -5,6 +5,10 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonkeyMacro", "MonkeyMacro\MonkeyMacro.csproj", "{9661A9AC-02A2-4C16-AAD8-676AFBA8EEF3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExampleApps", "ExampleApps", "{68EF562A-E14D-4DDA-AAA9-78DFF3AEA1B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyCaptureApp", "ExampleApps\KeyCaptureApp\KeyCaptureApp.csproj", "{39CC8C82-7CF5-42E9-809A-9F4F892B6A31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{9661A9AC-02A2-4C16-AAD8-676AFBA8EEF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9661A9AC-02A2-4C16-AAD8-676AFBA8EEF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9661A9AC-02A2-4C16-AAD8-676AFBA8EEF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39CC8C82-7CF5-42E9-809A-9F4F892B6A31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39CC8C82-7CF5-42E9-809A-9F4F892B6A31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39CC8C82-7CF5-42E9-809A-9F4F892B6A31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39CC8C82-7CF5-42E9-809A-9F4F892B6A31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{39CC8C82-7CF5-42E9-809A-9F4F892B6A31} = {68EF562A-E14D-4DDA-AAA9-78DFF3AEA1B6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DDF82BEC-8E04-4407-BE37-24FD9761608B}
