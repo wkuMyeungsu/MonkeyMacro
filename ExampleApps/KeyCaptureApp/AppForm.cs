@@ -5,13 +5,13 @@ using System.Windows.Forms;
 
 namespace KeyCaptureApp
 {
-    public partial class Form1 : Form
+    public partial class AppForm : Form
     {
         private StringBuilder keySequence;
         private bool isCapturing;
         private HashSet<Keys> pressedKeys;
 
-        public Form1()
+        public AppForm()
         {
             InitializeComponent();
             keySequence = new StringBuilder();
@@ -24,7 +24,7 @@ namespace KeyCaptureApp
             if (!isCapturing)
             {
                 isCapturing = true;
-                button1.Text = "키 캡쳐 중단";
+                buttonKeyCapture.Text = "키 캡쳐 중단";
                 this.KeyPreview = true;
                 this.KeyDown += new KeyEventHandler(Form1_KeyDown);
                 this.KeyUp += new KeyEventHandler(Form1_KeyUp);
@@ -32,7 +32,7 @@ namespace KeyCaptureApp
             else
             {
                 isCapturing = false;
-                button1.Text = "키 캡쳐 시작";
+                buttonKeyCapture.Text = "키 캡쳐 시작";
                 this.KeyPreview = false;
                 this.KeyDown -= new KeyEventHandler(Form1_KeyDown);
                 this.KeyUp -= new KeyEventHandler(Form1_KeyUp);
@@ -53,12 +53,12 @@ namespace KeyCaptureApp
 
         private void UpdateLabel()
         {
-            string displayText = keySequence.ToString();
+            string displayText = $"단축키 : {keySequence.ToString()}";
             if (displayText.EndsWith(" + "))
             {
                 displayText = displayText.Substring(0, displayText.Length - 3);
             }
-            label1.Text = displayText;
+            labelCapturedKeys.Text = displayText;
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
