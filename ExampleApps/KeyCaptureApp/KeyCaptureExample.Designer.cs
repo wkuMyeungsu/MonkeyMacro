@@ -1,6 +1,6 @@
 ﻿namespace KeyCaptureApp
 {
-    partial class AppForm
+    partial class KeyCaptureExample
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.

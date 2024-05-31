@@ -5,13 +5,13 @@ using System.Windows.Forms;
 
 namespace KeyCaptureApp
 {
-    public partial class AppForm : Form
+    public partial class KeyCaptureExample : Form
     {
         private StringBuilder keySequence;
         private bool isCapturing;
         private HashSet<Keys> pressedKeys;
 
-        public AppForm()
+        public KeyCaptureExample()
         {
             InitializeComponent();
             keySequence = new StringBuilder();
