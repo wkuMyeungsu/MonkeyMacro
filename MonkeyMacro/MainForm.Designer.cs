@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             this.panelTitleBar = new System.Windows.Forms.Panel();
+            this.pictureBoxButtonMinimize = new System.Windows.Forms.PictureBox();
+            this.pictureBoxButtonExit = new System.Windows.Forms.PictureBox();
             this.label_title = new System.Windows.Forms.Label();
+            this.pictureBox_logo = new System.Windows.Forms.PictureBox();
             this.panel_menu = new System.Windows.Forms.Panel();
             this.labelMenuInfo = new System.Windows.Forms.Label();
-            this.panelContainer = new System.Windows.Forms.Panel();
             this.buttonUtility = new System.Windows.Forms.Button();
             this.button_manageKeys = new System.Windows.Forms.Button();
             this.button_settings = new System.Windows.Forms.Button();
-            this.pictureBoxButtonMinimize = new System.Windows.Forms.PictureBox();
-            this.pictureBoxButtonExit = new System.Windows.Forms.PictureBox();
-            this.pictureBox_logo = new System.Windows.Forms.PictureBox();
+            this.panelContainer = new System.Windows.Forms.Panel();
             this.panelTitleBar.SuspendLayout();
-            this.panel_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).BeginInit();
+            this.panel_menu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel_titleBar
+            // panelTitleBar
             // 
             this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(55)))), ((int)(((byte)(91)))));
             this.panelTitleBar.Controls.Add(this.pictureBoxButtonMinimize);
@@ -55,9 +55,31 @@
             this.panelTitleBar.Controls.Add(this.pictureBox_logo);
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitleBar.Location = new System.Drawing.Point(0, 0);
-            this.panelTitleBar.Name = "panel_titleBar";
+            this.panelTitleBar.Name = "panelTitleBar";
             this.panelTitleBar.Size = new System.Drawing.Size(407, 48);
             this.panelTitleBar.TabIndex = 0;
+            // 
+            // pictureBoxButtonMinimize
+            // 
+            this.pictureBoxButtonMinimize.Image = global::MonkeyMacro.Properties.Resources.white_minus;
+            this.pictureBoxButtonMinimize.Location = new System.Drawing.Point(356, 8);
+            this.pictureBoxButtonMinimize.Name = "pictureBoxButtonMinimize";
+            this.pictureBoxButtonMinimize.Size = new System.Drawing.Size(16, 16);
+            this.pictureBoxButtonMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxButtonMinimize.TabIndex = 4;
+            this.pictureBoxButtonMinimize.TabStop = false;
+            this.pictureBoxButtonMinimize.Click += new System.EventHandler(this.OnPictureBoxButtonMinimizeClick);
+            // 
+            // pictureBoxButtonExit
+            // 
+            this.pictureBoxButtonExit.Image = global::MonkeyMacro.Properties.Resources.white_cross;
+            this.pictureBoxButtonExit.Location = new System.Drawing.Point(384, 8);
+            this.pictureBoxButtonExit.Name = "pictureBoxButtonExit";
+            this.pictureBoxButtonExit.Size = new System.Drawing.Size(16, 16);
+            this.pictureBoxButtonExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxButtonExit.TabIndex = 2;
+            this.pictureBoxButtonExit.TabStop = false;
+            this.pictureBoxButtonExit.Click += new System.EventHandler(this.OnPictureBoxButtonExitClick);
             // 
             // label_title
             // 
@@ -69,6 +91,16 @@
             this.label_title.Size = new System.Drawing.Size(125, 19);
             this.label_title.TabIndex = 1;
             this.label_title.Text = "Monkey Macro";
+            // 
+            // pictureBox_logo
+            // 
+            this.pictureBox_logo.Image = global::MonkeyMacro.Properties.Resources.logo_monkey;
+            this.pictureBox_logo.Location = new System.Drawing.Point(6, 5);
+            this.pictureBox_logo.Name = "pictureBox_logo";
+            this.pictureBox_logo.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_logo.TabIndex = 0;
+            this.pictureBox_logo.TabStop = false;
             // 
             // panel_menu
             // 
@@ -83,29 +115,21 @@
             this.panel_menu.Size = new System.Drawing.Size(407, 36);
             this.panel_menu.TabIndex = 1;
             // 
-            // label_menuInfo
+            // labelMenuInfo
             // 
             this.labelMenuInfo.AutoSize = true;
             this.labelMenuInfo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMenuInfo.Location = new System.Drawing.Point(5, 7);
-            this.labelMenuInfo.Name = "label_menuInfo";
-            this.labelMenuInfo.Size = new System.Drawing.Size(120, 21);
+            this.labelMenuInfo.Name = "labelMenuInfo";
+            this.labelMenuInfo.Size = new System.Drawing.Size(160, 21);
             this.labelMenuInfo.TabIndex = 3;
-            this.labelMenuInfo.Text = "Tracing : none";
+            this.labelMenuInfo.Text = "Tracing : Detecting";
             // 
-            // panel_container
-            // 
-            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContainer.Location = new System.Drawing.Point(0, 84);
-            this.panelContainer.Name = "panel_container";
-            this.panelContainer.Size = new System.Drawing.Size(407, 447);
-            this.panelContainer.TabIndex = 2;
-            // 
-            // button_utility
+            // buttonUtility
             // 
             this.buttonUtility.Image = global::MonkeyMacro.Properties.Resources.plus;
             this.buttonUtility.Location = new System.Drawing.Point(304, 3);
-            this.buttonUtility.Name = "button_utility";
+            this.buttonUtility.Name = "buttonUtility";
             this.buttonUtility.Size = new System.Drawing.Size(30, 30);
             this.buttonUtility.TabIndex = 2;
             this.buttonUtility.UseVisualStyleBackColor = true;
@@ -131,37 +155,13 @@
             this.button_settings.UseVisualStyleBackColor = true;
             this.button_settings.Click += new System.EventHandler(this.OnButtonSettingsClick);
             // 
-            // pictureBoxButton_minimize
+            // panelContainer
             // 
-            this.pictureBoxButtonMinimize.Image = global::MonkeyMacro.Properties.Resources.white_minus;
-            this.pictureBoxButtonMinimize.Location = new System.Drawing.Point(356, 8);
-            this.pictureBoxButtonMinimize.Name = "pictureBoxButton_minimize";
-            this.pictureBoxButtonMinimize.Size = new System.Drawing.Size(16, 16);
-            this.pictureBoxButtonMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxButtonMinimize.TabIndex = 4;
-            this.pictureBoxButtonMinimize.TabStop = false;
-            this.pictureBoxButtonMinimize.Click += new System.EventHandler(this.OnPictureBoxButtonMinimizeClick);
-            // 
-            // pictureBoxButton_exit
-            // 
-            this.pictureBoxButtonExit.Image = global::MonkeyMacro.Properties.Resources.white_cross;
-            this.pictureBoxButtonExit.Location = new System.Drawing.Point(384, 8);
-            this.pictureBoxButtonExit.Name = "pictureBoxButton_exit";
-            this.pictureBoxButtonExit.Size = new System.Drawing.Size(16, 16);
-            this.pictureBoxButtonExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxButtonExit.TabIndex = 2;
-            this.pictureBoxButtonExit.TabStop = false;
-            this.pictureBoxButtonExit.Click += new System.EventHandler(this.OnPictureBoxButtonExitClick);
-            // 
-            // pictureBox_logo
-            // 
-            this.pictureBox_logo.Image = global::MonkeyMacro.Properties.Resources.logo_monkey;
-            this.pictureBox_logo.Location = new System.Drawing.Point(6, 5);
-            this.pictureBox_logo.Name = "pictureBox_logo";
-            this.pictureBox_logo.Size = new System.Drawing.Size(36, 36);
-            this.pictureBox_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_logo.TabIndex = 0;
-            this.pictureBox_logo.TabStop = false;
+            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContainer.Location = new System.Drawing.Point(0, 84);
+            this.panelContainer.Name = "panelContainer";
+            this.panelContainer.Size = new System.Drawing.Size(407, 447);
+            this.panelContainer.TabIndex = 2;
             // 
             // MainForm
             // 
@@ -177,11 +177,11 @@
             this.Text = "Form1";
             this.panelTitleBar.ResumeLayout(false);
             this.panelTitleBar.PerformLayout();
-            this.panel_menu.ResumeLayout(false);
-            this.panel_menu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonExit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).EndInit();
+            this.panel_menu.ResumeLayout(false);
+            this.panel_menu.PerformLayout();
             this.ResumeLayout(false);
 
         }

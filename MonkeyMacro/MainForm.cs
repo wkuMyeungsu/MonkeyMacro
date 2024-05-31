@@ -39,7 +39,7 @@ namespace MonkeyMacro
         {
             updateTimer = new Timer();
             updateTimer.Interval = 1000; // 1초마다 업데이트
-            updateTimer.Tick += OnUpdateTimerTick;
+            updateTimer.Tick += OnUpdateTimerTick;  //TimerTic마다 내용 업데이트(추적프로그램 및 라벨)
             updateTimer.Start();
         }
 
@@ -204,22 +204,37 @@ namespace MonkeyMacro
 
         private void OnUpdateTimerTick(object sender, EventArgs e)
         {
-            // 활성화된 창의 프로세스 이름을 라벨에 설정
-            labelMenuInfo.Text = "Tracing: " + GetActiveWindowProcessName();
-        }
+            String processName = GetActiveWindowProcessName();  //프로세스 명
+            String programName = "Detecting";                   //프로그램 명
 
-        protected override void WndProc(ref Message message)
-        {
-            const int WindowActivate = 0x0006;
-            const int SetFocus = 0x0007;
-
-            if (message.Msg == WindowActivate || message.Msg == SetFocus)
+            switch (processName)    //프로세스 명에 따른 프로그램 명으로 라벨 변경
             {
-                // 활성 창의 프로세스 이름을 가져와 라벨에 설정
-                labelMenuInfo.Text = "Tracing: " + GetActiveWindowProcessName();
+                case "MonkeyMacro":
+                    break;
+                case "WINWORD":
+                    programName = "MS Word";
+                    labelMenuInfo.Text = "Tracing: " + programName;
+                    break;
+                case "POWERPNT":
+                    programName = "MS PowerPoint";
+                    labelMenuInfo.Text = "Tracing: " + programName;
+                    break;
+                case "EXCEL":
+                    programName = "MS Excel";
+                    labelMenuInfo.Text = "Tracing: " + programName;
+                    break;
+                case "devenv":
+                    programName = "Visual Studio";
+                    labelMenuInfo.Text = "Tracing: " + programName;
+                    break;
+                case "Hwp":
+                    programName = "한글";
+                    labelMenuInfo.Text = "Tracing: " + programName;
+                    break;
+                default:
+                    labelMenuInfo.Text = "Tracing: " + programName;
+                    break;
             }
-
-            base.WndProc(ref message);
         }
 
         private string GetActiveWindowProcessName()
