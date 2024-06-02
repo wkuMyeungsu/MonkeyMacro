@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonkeyMacro.Objects;
+using System;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -35,6 +36,10 @@ namespace MonkeyMacro
 
             // textBoxPassWord
             textBoxPassWord.PasswordChar = '*';
+
+            // FormStyling
+            FormStyling.ApplyShadow(this);
+            FormStyling.ApplyRoundedCorners(this, 5, 5);
         }
 
         private void InitializeEventHandlers()

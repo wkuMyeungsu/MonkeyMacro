@@ -1,4 +1,6 @@
-﻿using MonkeyMacro.UserControls;
+﻿using MonkeyMacro.Forms;
+using MonkeyMacro.Objects;
+using MonkeyMacro.UserControls;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -30,9 +32,17 @@ namespace MonkeyMacro
             InitializeEventHandlers();
             InitializeDefaultUserControl();
             InitializeAttributes();
+            InitializeLayout();
             ShowLoginForm();
 
             InitializeUpdateTimer();
+        }
+
+        private void InitializeLayout()
+        {
+            // FormStyling
+            FormStyling.ApplyShadow(this);
+            FormStyling.ApplyRoundedCorners(this, 5, 5);
         }
 
         private void InitializeUpdateTimer()
@@ -55,7 +65,8 @@ namespace MonkeyMacro
                 userData = new UserData();
                 userData.UserName = loginForm.UserName;
                 this.Show();
-            }else
+            }
+            else
             {
                 this.Close();
             }
@@ -160,8 +171,13 @@ namespace MonkeyMacro
             SaveUserInfo();
 
             // 종료 확인 메시지 박스
-            DialogResult result = MessageBox.Show("프로그램을 종료하시겠습니까?", "종료 확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            string dialogTitle = "종료 확인";
+            string dialogMessage = "프로그램을 정말 종료 하시겠습니까?";
+            string dialogOKText = "Yes";
+            string dialogCancelText = "No";
+
+            bool dialogResult = AlertDialog.ShowDialog(this, dialogTitle, dialogMessage, dialogOKText, dialogCancelText);
+            if (dialogResult)
             {
                 Application.Exit();
             }
