@@ -18,6 +18,11 @@ namespace MonkeyMacro
         private DataController dataController;
         private UserData userData;
 
+        //사용자 설정 값
+        private bool user_Loginstate = false;   //로그인 상태 확인
+        public double user_Opacityvalue = 0.9;  //투명도 
+        public bool user_setTray = false;   //트레이로 최소화
+
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
 
@@ -34,6 +39,7 @@ namespace MonkeyMacro
             InitializeAttributes();
             InitializeLayout();
             ShowLoginForm();
+            this.Opacity = user_Opacityvalue;
 
             InitializeUpdateTimer();
         }
@@ -64,6 +70,7 @@ namespace MonkeyMacro
             {
                 userData = new UserData();
                 userData.UserName = loginForm.UserName;
+                user_Loginstate = true;
                 this.Show();
             }
             else
@@ -161,8 +168,11 @@ namespace MonkeyMacro
 
         private void OnPictureBoxButtonExitClick(object sender, EventArgs e)
         {
-            // 사용자 정보 저장 함수 호출
-            ExitApplication();
+            if (user_setTray)
+                this.Hide();
+            else
+                // 사용자 정보 저장 함수 호출
+                ExitApplication();
         }
 
         private void ExitApplication()
@@ -270,6 +280,24 @@ namespace MonkeyMacro
             {
                 return "Unknown";
             }
+        }
+
+        //트레이 관련 동작들 
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (user_Loginstate)
+                this.Show();
+        }
+
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (user_Loginstate)
+                this.Show();
+        }
+
+        private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExitApplication();
         }
     }
 }

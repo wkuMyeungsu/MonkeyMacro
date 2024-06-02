@@ -32,8 +32,13 @@
             this.TrackOpacity = new System.Windows.Forms.TrackBar();
             this.Panel_Opacity = new System.Windows.Forms.GroupBox();
             this.LabelOpacity = new System.Windows.Forms.Label();
+            this.GroupSet = new System.Windows.Forms.Label();
+            this.QuitProgram = new System.Windows.Forms.RadioButton();
+            this.SetTray = new System.Windows.Forms.RadioButton();
+            this.trayControl = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.TrackOpacity)).BeginInit();
             this.Panel_Opacity.SuspendLayout();
+            this.trayControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelTestSettings
@@ -53,7 +58,7 @@
             this.TrackOpacity.Maximum = 100;
             this.TrackOpacity.Minimum = 10;
             this.TrackOpacity.Name = "TrackOpacity";
-            this.TrackOpacity.Size = new System.Drawing.Size(316, 82);
+            this.TrackOpacity.Size = new System.Drawing.Size(316, 80);
             this.TrackOpacity.TabIndex = 2;
             this.TrackOpacity.TickFrequency = 10;
             this.TrackOpacity.TickStyle = System.Windows.Forms.TickStyle.Both;
@@ -67,7 +72,7 @@
             this.Panel_Opacity.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel_Opacity.Location = new System.Drawing.Point(0, 0);
             this.Panel_Opacity.Name = "Panel_Opacity";
-            this.Panel_Opacity.Size = new System.Drawing.Size(322, 102);
+            this.Panel_Opacity.Size = new System.Drawing.Size(322, 100);
             this.Panel_Opacity.TabIndex = 3;
             this.Panel_Opacity.TabStop = false;
             this.Panel_Opacity.Text = "투명도";
@@ -82,10 +87,62 @@
             this.LabelOpacity.Text = "XX%";
             this.LabelOpacity.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // GroupSet
+            // 
+            this.GroupSet.AutoSize = true;
+            this.GroupSet.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.GroupSet.Location = new System.Drawing.Point(20, 20);
+            this.GroupSet.Name = "GroupSet";
+            this.GroupSet.Size = new System.Drawing.Size(102, 11);
+            this.GroupSet.TabIndex = 6;
+            this.GroupSet.Text = "X 클릭시 동작 설정";
+            // 
+            // QuitProgram
+            // 
+            this.QuitProgram.AutoSize = true;
+            this.QuitProgram.Checked = true;
+            this.QuitProgram.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.QuitProgram.Location = new System.Drawing.Point(195, 50);
+            this.QuitProgram.Name = "QuitProgram";
+            this.QuitProgram.Size = new System.Drawing.Size(99, 16);
+            this.QuitProgram.TabIndex = 5;
+            this.QuitProgram.TabStop = true;
+            this.QuitProgram.Text = "프로그램 종료";
+            this.QuitProgram.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.QuitProgram.UseVisualStyleBackColor = true;
+            // 
+            // SetTray
+            // 
+            this.SetTray.AutoSize = true;
+            this.SetTray.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.SetTray.Location = new System.Drawing.Point(51, 50);
+            this.SetTray.Name = "SetTray";
+            this.SetTray.Size = new System.Drawing.Size(99, 16);
+            this.SetTray.TabIndex = 0;
+            this.SetTray.Text = "트레이 최소화";
+            this.SetTray.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.SetTray.UseVisualStyleBackColor = true;
+            this.SetTray.CheckedChanged += new System.EventHandler(this.SetTray_CheckedChanged);
+            // 
+            // trayControl
+            // 
+            this.trayControl.Controls.Add(this.GroupSet);
+            this.trayControl.Controls.Add(this.QuitProgram);
+            this.trayControl.Controls.Add(this.SetTray);
+            this.trayControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.trayControl.Font = new System.Drawing.Font("굴림", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.trayControl.Location = new System.Drawing.Point(0, 100);
+            this.trayControl.Name = "trayControl";
+            this.trayControl.Size = new System.Drawing.Size(322, 80);
+            this.trayControl.TabIndex = 5;
+            this.trayControl.TabStop = false;
+            this.trayControl.Text = "종료설정";
+            // 
             // UserControlSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.trayControl);
             this.Controls.Add(this.Panel_Opacity);
             this.Controls.Add(this.labelTestSettings);
             this.Name = "UserControlSettings";
@@ -94,6 +151,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.TrackOpacity)).EndInit();
             this.Panel_Opacity.ResumeLayout(false);
             this.Panel_Opacity.PerformLayout();
+            this.trayControl.ResumeLayout(false);
+            this.trayControl.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,5 +164,9 @@
         private System.Windows.Forms.TrackBar TrackOpacity;
         private System.Windows.Forms.GroupBox Panel_Opacity;
         private System.Windows.Forms.Label LabelOpacity;
+        private System.Windows.Forms.Label GroupSet;
+        private System.Windows.Forms.RadioButton QuitProgram;
+        private System.Windows.Forms.RadioButton SetTray;
+        private System.Windows.Forms.GroupBox trayControl;
     }
 }
