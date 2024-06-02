@@ -61,6 +61,9 @@
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo_monkey.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Api.CommonProtos, Version=2.15.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Api.CommonProtos.2.15.0\lib\net461\Google.Api.CommonProtos.dll</HintPath>
@@ -327,6 +330,7 @@
     <None Include="protos\google\type\quaternion.proto" />
     <None Include="protos\google\type\timeofday.proto" />
     <None Include="Resources\Images\back.png" />
+    <Content Include="logo_monkey.ico" />
     <Content Include="Resources\Images\logo_monkey.png" />
     <Content Include="Resources\Images\menu.png" />
     <Content Include="Resources\Images\plus.png" />
