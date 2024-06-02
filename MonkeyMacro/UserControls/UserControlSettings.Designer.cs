@@ -40,19 +40,20 @@
             // 
             this.labelTestSettings.AutoSize = true;
             this.labelTestSettings.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold);
-            this.labelTestSettings.Location = new System.Drawing.Point(147, 207);
+            this.labelTestSettings.Location = new System.Drawing.Point(105, 230);
             this.labelTestSettings.Name = "labelTestSettings";
             this.labelTestSettings.Size = new System.Drawing.Size(113, 32);
             this.labelTestSettings.TabIndex = 1;
             this.labelTestSettings.Text = "Settings";
             // 
-            // Track_Opacity
+            // TrackOpacity
             // 
-            this.TrackOpacity.Location = new System.Drawing.Point(6, 20);
+            this.TrackOpacity.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TrackOpacity.Location = new System.Drawing.Point(3, 17);
             this.TrackOpacity.Maximum = 100;
             this.TrackOpacity.Minimum = 10;
-            this.TrackOpacity.Name = "Track_Opacity";
-            this.TrackOpacity.Size = new System.Drawing.Size(389, 45);
+            this.TrackOpacity.Name = "TrackOpacity";
+            this.TrackOpacity.Size = new System.Drawing.Size(316, 82);
             this.TrackOpacity.TabIndex = 2;
             this.TrackOpacity.TickFrequency = 10;
             this.TrackOpacity.TickStyle = System.Windows.Forms.TickStyle.Both;
@@ -63,31 +64,32 @@
             // 
             this.Panel_Opacity.Controls.Add(this.LabelOpacity);
             this.Panel_Opacity.Controls.Add(this.TrackOpacity);
-            this.Panel_Opacity.Location = new System.Drawing.Point(3, 3);
+            this.Panel_Opacity.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Panel_Opacity.Location = new System.Drawing.Point(0, 0);
             this.Panel_Opacity.Name = "Panel_Opacity";
-            this.Panel_Opacity.Size = new System.Drawing.Size(401, 102);
+            this.Panel_Opacity.Size = new System.Drawing.Size(322, 102);
             this.Panel_Opacity.TabIndex = 3;
             this.Panel_Opacity.TabStop = false;
             this.Panel_Opacity.Text = "투명도";
             // 
-            // Label_Opacity
+            // LabelOpacity
             // 
             this.LabelOpacity.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.LabelOpacity.Location = new System.Drawing.Point(337, 68);
-            this.LabelOpacity.Name = "Label_Opacity";
+            this.LabelOpacity.Location = new System.Drawing.Point(256, 70);
+            this.LabelOpacity.Name = "LabelOpacity";
             this.LabelOpacity.Size = new System.Drawing.Size(58, 23);
             this.LabelOpacity.TabIndex = 3;
             this.LabelOpacity.Text = "XX%";
             this.LabelOpacity.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // UC_Settings
+            // UserControlSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.Panel_Opacity);
             this.Controls.Add(this.labelTestSettings);
-            this.Name = "UC_Settings";
-            this.Size = new System.Drawing.Size(407, 447);
+            this.Name = "UserControlSettings";
+            this.Size = new System.Drawing.Size(322, 394);
             this.Load += new System.EventHandler(this.OnUserControlSettingsLoad);
             ((System.ComponentModel.ISupportInitialize)(this.TrackOpacity)).EndInit();
             this.Panel_Opacity.ResumeLayout(false);

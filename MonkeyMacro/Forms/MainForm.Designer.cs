@@ -56,13 +56,13 @@
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitleBar.Location = new System.Drawing.Point(0, 0);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(407, 48);
+            this.panelTitleBar.Size = new System.Drawing.Size(322, 48);
             this.panelTitleBar.TabIndex = 0;
             // 
             // pictureBoxButtonMinimize
             // 
             this.pictureBoxButtonMinimize.Image = global::MonkeyMacro.Properties.Resources.white_minus;
-            this.pictureBoxButtonMinimize.Location = new System.Drawing.Point(356, 8);
+            this.pictureBoxButtonMinimize.Location = new System.Drawing.Point(270, 9);
             this.pictureBoxButtonMinimize.Name = "pictureBoxButtonMinimize";
             this.pictureBoxButtonMinimize.Size = new System.Drawing.Size(16, 16);
             this.pictureBoxButtonMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -73,7 +73,7 @@
             // pictureBoxButtonExit
             // 
             this.pictureBoxButtonExit.Image = global::MonkeyMacro.Properties.Resources.white_cross;
-            this.pictureBoxButtonExit.Location = new System.Drawing.Point(384, 8);
+            this.pictureBoxButtonExit.Location = new System.Drawing.Point(298, 9);
             this.pictureBoxButtonExit.Name = "pictureBoxButtonExit";
             this.pictureBoxButtonExit.Size = new System.Drawing.Size(16, 16);
             this.pictureBoxButtonExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -112,7 +112,7 @@
             this.panel_menu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_menu.Location = new System.Drawing.Point(0, 48);
             this.panel_menu.Name = "panel_menu";
-            this.panel_menu.Size = new System.Drawing.Size(407, 36);
+            this.panel_menu.Size = new System.Drawing.Size(322, 36);
             this.panel_menu.TabIndex = 1;
             // 
             // labelMenuInfo
@@ -128,7 +128,7 @@
             // buttonUtility
             // 
             this.buttonUtility.Image = global::MonkeyMacro.Properties.Resources.plus;
-            this.buttonUtility.Location = new System.Drawing.Point(304, 3);
+            this.buttonUtility.Location = new System.Drawing.Point(219, 3);
             this.buttonUtility.Name = "buttonUtility";
             this.buttonUtility.Size = new System.Drawing.Size(30, 30);
             this.buttonUtility.TabIndex = 2;
@@ -138,7 +138,7 @@
             // button_manageKeys
             // 
             this.button_manageKeys.Image = global::MonkeyMacro.Properties.Resources.menu;
-            this.button_manageKeys.Location = new System.Drawing.Point(339, 3);
+            this.button_manageKeys.Location = new System.Drawing.Point(254, 3);
             this.button_manageKeys.Name = "button_manageKeys";
             this.button_manageKeys.Size = new System.Drawing.Size(30, 30);
             this.button_manageKeys.TabIndex = 1;
@@ -148,7 +148,7 @@
             // button_settings
             // 
             this.button_settings.Image = global::MonkeyMacro.Properties.Resources.setting;
-            this.button_settings.Location = new System.Drawing.Point(374, 3);
+            this.button_settings.Location = new System.Drawing.Point(289, 3);
             this.button_settings.Name = "button_settings";
             this.button_settings.Size = new System.Drawing.Size(30, 30);
             this.button_settings.TabIndex = 0;
@@ -160,14 +160,14 @@
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContainer.Location = new System.Drawing.Point(0, 84);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(407, 447);
+            this.panelContainer.Size = new System.Drawing.Size(322, 394);
             this.panelContainer.TabIndex = 2;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(407, 531);
+            this.ClientSize = new System.Drawing.Size(322, 478);
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panel_menu);
             this.Controls.Add(this.panelTitleBar);

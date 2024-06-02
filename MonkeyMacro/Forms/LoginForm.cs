@@ -38,8 +38,8 @@ namespace MonkeyMacro
             textBoxPassWord.PasswordChar = '*';
 
             // FormStyling
-            FormStyling.ApplyShadow(this);
-            FormStyling.ApplyRoundedCorners(this, 5, 5);
+            FormStyler.ApplyShadow(this);
+            FormStyler.ApplyRoundedCorners(this, 5, 5);
         }
 
         private void InitializeEventHandlers()

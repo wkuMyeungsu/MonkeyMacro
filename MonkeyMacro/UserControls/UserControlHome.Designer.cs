@@ -30,15 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // UC_Home
+            // UserControlHome
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(51)))), ((int)(((byte)(64)))));
             this.ForeColor = System.Drawing.Color.White;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "UC_Home";
-            this.Size = new System.Drawing.Size(465, 559);
+            this.Name = "UserControlHome";
+            this.Size = new System.Drawing.Size(322, 394);
             this.ResumeLayout(false);
 
         }

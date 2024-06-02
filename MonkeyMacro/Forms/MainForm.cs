@@ -41,8 +41,8 @@ namespace MonkeyMacro
         private void InitializeLayout()
         {
             // FormStyling
-            FormStyling.ApplyShadow(this);
-            FormStyling.ApplyRoundedCorners(this, 5, 5);
+            FormStyler.ApplyShadow(this);
+            FormStyler.ApplyRoundedCorners(this, 5, 5);
         }
 
         private void InitializeUpdateTimer()
@@ -173,8 +173,8 @@ namespace MonkeyMacro
             // 종료 확인 메시지 박스
             string dialogTitle = "종료 확인";
             string dialogMessage = "프로그램을 정말 종료 하시겠습니까?";
-            string dialogOKText = "Yes";
-            string dialogCancelText = "No";
+            string dialogOKText = "OK";
+            string dialogCancelText = "Cancel";
 
             bool dialogResult = AlertDialog.ShowDialog(this, dialogTitle, dialogMessage, dialogOKText, dialogCancelText);
             if (dialogResult)
