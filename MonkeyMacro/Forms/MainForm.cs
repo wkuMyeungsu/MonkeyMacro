@@ -2,6 +2,7 @@
 using MonkeyMacro.Objects;
 using MonkeyMacro.UserControls;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace MonkeyMacro
 
         private FirebaseController firebaseController;
         private UserData userData;
+        private string tracingAppName;
 
         //사용자 설정 값
         private bool user_Loginstate = false;   //로그인 상태 확인
@@ -37,15 +39,15 @@ namespace MonkeyMacro
         public MainForm()
         {
             InitializeComponent();
+
+            // 로그인 폼 표시
+            ShowLoginForm();
+
             InitializeEventHandlers();
             InitializeDefaultUserControl();
             InitializeAttributes();
             InitializeLayout();
-            this.Opacity = user_Opacityvalue;  // 설정 초기화 전에 기본 투명도 설정
             InitializeUpdateTimer();
-
-            // 로그인 폼 표시
-            ShowLoginForm();
         }
 
         private void InitializeLayout()
@@ -58,7 +60,7 @@ namespace MonkeyMacro
         private void InitializeUpdateTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 1000; // 1초마다 업데이트
+            updateTimer.Interval = 100; // 0.1초마다 업데이트
             updateTimer.Tick += OnUpdateTimerTick;  //TimerTic마다 내용 업데이트(추적프로그램 및 라벨)
             updateTimer.Start();
         }
@@ -89,8 +91,6 @@ namespace MonkeyMacro
                         {
                             ApplyUserSettings(); // UI 설정 초기화
                             this.Show(); // 데이터 로드 성공시 메인 폼 표시
-                            testprint();
-                            UpdateHomeUserControl();
                         }));
                     }
                 }, TaskScheduler.FromCurrentSynchronizationContext());
@@ -125,6 +125,8 @@ namespace MonkeyMacro
         {
             isDragging = false;
             isHome = true;
+            this.TopMost = true;
+            tracingAppName = "Tracing";
         }
 
         private async Task LoadInitUserData(string userName)
@@ -176,7 +178,6 @@ namespace MonkeyMacro
             if (userControl.GetType() == typeof(UserControlHome))
             {
                 isHome = true;
-                UpdateHomeUserControl();
             }
             else
             {
@@ -185,7 +186,7 @@ namespace MonkeyMacro
             ChangeUtilityButton(isHome);
         }
 
-        private void UpdateHomeUserControl()
+        private void UpdateHomeUserControl(string tracingAppName)
         {
             if (userData == null)
             {
@@ -197,8 +198,14 @@ namespace MonkeyMacro
             UserControlHome homeControl = panelContainer.Controls.OfType<UserControlHome>().FirstOrDefault();
             if (homeControl != null)
             {
-                string currentProcessName = GetActiveWindowProcessName(); // 현재 활성화된 프로세스 이름 가져오기
-                homeControl.UpdateControl(currentProcessName, userData.AppsShortcutDict);
+                var appsShortcutDict = userData.AppsShortcutDict;
+                foreach ( var appShortcut in appsShortcutDict.Keys )
+                {
+                    if ( appShortcut == tracingAppName)
+                    {
+                    }
+                }
+                homeControl.UpdateControl(tracingAppName, appsShortcutDict);
             }
         }
 
@@ -284,13 +291,13 @@ namespace MonkeyMacro
         private async Task testFuncAsync()
         {
             string userName = userData.UserName;
-            string applicationName = "Excel";
-            string shortcutName = "Paste";
-            string[] keys = new string[] { "Ctrl", "V" };
+            string applicationName = "Visual Studio";
+            string shortcutName = "Copy";
+            string[] keys = new string[] { "Ctrl", "C" };
 
-            //await firebaseController.SetUserShortcut(userName, applicationName, shortcutName, keys);
+            await firebaseController.SetUserShortcut(userName, applicationName, shortcutName, keys);
             //await firebaseController.DeleteUserShortcut(userName, applicationName, shortcutName);
-            await firebaseController.UpdateUserSettings(userName, 55, false, true);
+            //await firebaseController.UpdateUserSettings(userName, 55, false, true);
         }
 
         private void testprint()
@@ -326,41 +333,36 @@ namespace MonkeyMacro
 
         private void OnUpdateTimerTick(object sender, EventArgs e)
         {
-            String processName = GetActiveWindowProcessName();  //프로세스 명
-            String programName = "Detecting";                   //프로그램 명
+            string processName = GetActiveWindowProcessName();
+            string newTracingAppName = GetTracingAppName(processName);
 
-            switch (processName)    //프로세스 명에 따른 프로그램 명으로 라벨 변경
+            if (newTracingAppName != null)
             {
-                case "MonkeyMacro":
-                    break;
+                if (!tracingAppName.Equals(newTracingAppName))
+                {
+                    tracingAppName = newTracingAppName;
+                    labelMenuInfo.Text = $"Tracing : {tracingAppName}";
+                    UpdateHomeUserControl(tracingAppName);
+                }
+            }
+        }
+
+        private string GetTracingAppName(string processName)
+        {
+            switch(processName)
+            {
                 case "WINWORD":
-                    programName = "MS Word";
-                    labelMenuInfo.Text = "Tracing: " + programName;
-                    UpdateHomeUserControl();
-                    break;
+                    return "MS Word";
                 case "POWERPNT":
-                    programName = "MS PowerPoint";
-                    labelMenuInfo.Text = "Tracing: " + programName;
-                    UpdateHomeUserControl();
-                    break;
+                    return "MS PowerPoint";
                 case "EXCEL":
-                    programName = "MS Excel";
-                    labelMenuInfo.Text = "Tracing: " + programName;
-                    UpdateHomeUserControl();
-                    break;
+                    return "MS Excel";
                 case "devenv":
-                    programName = "Visual Studio";
-                    labelMenuInfo.Text = "Tracing: " + programName;
-                    UpdateHomeUserControl();
-                    break;
+                    return "Visual Studio";
                 case "Hwp":
-                    programName = "한글";
-                    labelMenuInfo.Text = "Tracing: " + programName;
-                    UpdateHomeUserControl();
-                    break;
+                    return "한글";
                 default:
-                    labelMenuInfo.Text = "Tracing: " + programName;
-                    break;
+                    return null;
             }
         }
 

@@ -23,19 +23,22 @@ namespace MonkeyMacro.UserControls
             this.Keys = keys;
 
             InitializeComponent();
-            InitializeLayout();
+            SetItemLayout();
         }
 
-        private void InitializeLayout()
+        private void SetItemLayout()
         {
             UserControlStyler.ApplyRoundedCorners(this, 20, 20);
             // 필요한 레이아웃 초기화 코드 추가
+            labelKeyName.Text = ShortcutName;
+            textBox1.Text = string.Join(" + ", Keys.Keys);
         }
 
-        public void UpdateShortcutInfo(string shortcutName, KeyCombination keys) // KeyCombination 타입으로 수정
+        public void UpdateItem(string shortcutName, KeyCombination keys) // KeyCombination 타입으로 수정
         {
             this.ShortcutName = shortcutName;
             this.Keys = keys;
+            SetItemLayout();
         }
     }
 }
