@@ -10,7 +10,7 @@ namespace MonkeyMacro
     {
         private bool isDragging;
         private Point draggingStartPoint;
-        private DataController dataController;
+        private FirebaseController firebaseController;
 
         public string UserName { get; private set; }
         public string Password { get; private set; }
@@ -22,7 +22,7 @@ namespace MonkeyMacro
             InitializeEventHandlers();
 
             // DataController의 인스턴스를 가져와서 할당
-            dataController = DataController.Instance;
+            firebaseController = FirebaseController.Instance;
         }
 
         private void InitializeLayout()
@@ -122,7 +122,7 @@ namespace MonkeyMacro
                 return;
             }
 
-            bool accountValid = await dataController.CheckUserAccount(UserName, Password);
+            bool accountValid = await firebaseController.CheckUserAccount(UserName, Password);
 
             if (accountValid)
             {

@@ -179,7 +179,7 @@
     <Compile Include="Forms\AlertDialog.Designer.cs">
       <DependentUpon>AlertDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Objects\DataController.cs" />
+    <Compile Include="Objects\FirebaseController.cs" />
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -336,6 +336,8 @@
     <Content Include="Resources\Images\plus.png" />
     <Content Include="Resources\Images\setting.png" />
     <Content Include="Resources\Images\imageSources.txt" />
+    <Content Include="Resources\Images\white-edit-sqare.png" />
+    <Content Include="Resources\Images\white-trash.png" />
     <Content Include="Resources\Images\white_cross.png" />
     <Content Include="Resources\Images\white_delete.png" />
     <Content Include="Resources\Images\white_edit.png" />

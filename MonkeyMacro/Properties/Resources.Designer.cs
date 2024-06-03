@@ -153,9 +153,29 @@ namespace MonkeyMacro.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap white_edit_sqare {
+            get {
+                object obj = ResourceManager.GetObject("white-edit-sqare", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap white_minus {
             get {
                 object obj = ResourceManager.GetObject("white_minus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap white_trash {
+            get {
+                object obj = ResourceManager.GetObject("white-trash", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

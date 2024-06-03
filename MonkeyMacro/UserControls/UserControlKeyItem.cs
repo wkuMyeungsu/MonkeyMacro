@@ -14,29 +14,28 @@ namespace MonkeyMacro.UserControls
 {
     public partial class UserControlKeyItem : UserControl
     {
+        public string ShortcutName { get; set; }
+        public KeyCombination Keys { get; set; } // KeyCombination 타입으로 수정
 
-        public UserControlKeyItem()
+        public UserControlKeyItem(string shortcutName, KeyCombination keys) // KeyCombination 타입으로 수정
         {
+            this.ShortcutName = shortcutName;
+            this.Keys = keys;
+
             InitializeComponent();
             InitializeLayout();
-            AddLabels();
-        }
-
-        private void AddLabels()
-        {
-            const int labelCount = 5; // Label 개수
-            const int buttonMargin = 5; // Label 사이의 간격
-
         }
 
         private void InitializeLayout()
         {
             UserControlStyler.ApplyRoundedCorners(this, 20, 20);
+            // 필요한 레이아웃 초기화 코드 추가
         }
 
-        private void UserControlKeyItem_Load(object sender, EventArgs e)
+        public void UpdateShortcutInfo(string shortcutName, KeyCombination keys) // KeyCombination 타입으로 수정
         {
-
+            this.ShortcutName = shortcutName;
+            this.Keys = keys;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace MonkeyMacro.UserControls
         {
             if (ParentForm is MainForm mainForm)
             {
-                bool setTrayicon = mainForm.user_setTray;
+                bool setTrayicon = mainForm.user_useTrayMinimize;
                 double mainFormOpacity = mainForm.user_Opacityvalue;
 
                 int trackBarValue = (int)(mainFormOpacity * 100);
@@ -56,14 +56,14 @@ namespace MonkeyMacro.UserControls
             {
                 if (ParentForm is MainForm mainForm)
                 {
-                    mainForm.user_setTray = true;
+                    mainForm.user_useTrayMinimize = true;
                 }
             }
             else
             {
                 if (ParentForm is MainForm mainForm)
                 {
-                    mainForm.user_setTray = false;
+                    mainForm.user_useTrayMinimize = false;
                 }
             }
         }
