@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace MonkeyMacro.UserControls
@@ -27,19 +26,19 @@ namespace MonkeyMacro.UserControls
             Controls.Add(panelContainer);
         }
 
-        public void UpdateControl(string currentProcessName, Dictionary<string, ApplicationShortcut> shortcutData)
+        public void UpdateControl(string tracingAppName, Dictionary<string, ApplicationShortcut> shortcutData)
         {
             panelContainer.Controls.Clear(); // 이전에 추가된 키 아이템들을 제거합니다.
 
-            if (shortcutData.ContainsKey(currentProcessName))
+            if (shortcutData.ContainsKey(tracingAppName))
             {
-                var shortcuts = shortcutData[currentProcessName].ShortcutKeys;
+                var shortcuts = shortcutData[tracingAppName].ShortcutKeys;
                 int yPos = 0;
 
                 foreach (var shortcut in shortcuts)
                 {
                     // 각 단축키 정보에 대한 UserControlKeyItem을 생성합니다.
-                    UserControlKeyItem keyItem = new UserControlKeyItem(shortcut.Key, shortcut.Value);
+                    UserControlKeyItem keyItem = new UserControlKeyItem(tracingAppName, shortcut.Key, shortcut.Value);
                     keyItem.Location = new Point((panelContainer.Width - keyItem.Width) / 2, yPos);
                     panelContainer.Controls.Add(keyItem);
 
@@ -47,7 +46,5 @@ namespace MonkeyMacro.UserControls
                 }
             }
         }
-
-
     }
 }

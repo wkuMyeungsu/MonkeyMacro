@@ -1,15 +1,8 @@
-﻿using MonkeyMacro.Objects;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace MonkeyMacro.Forms
 {
@@ -18,17 +11,43 @@ namespace MonkeyMacro.Forms
         private bool isDragging;
         private Point draggingStartPoint;
 
+        private bool isKeyCapturing;
+        private StringBuilder currentKeySequence;
+        private StringBuilder lastKeySequence;
+        private HashSet<Keys> pressedKeys;
+
         public string ShortcutName { get; set; }
-        public KeyCombination Keys { get; set; } // KeyCombination 타입으로 수정
+        public KeyCombination KeyCombination { get; set; }
+
+        public KeyCombination UpdatedKeyCombination { get; private set; }
 
         public KeyDialog(string keyName, KeyCombination keys)
         {
             this.ShortcutName = keyName;
-            this.Keys = keys;
+            this.KeyCombination = keys;
 
             InitializeComponent();
             InitializeLayout();
             InitializeEventHandlers();
+            InitializeKeyCaptureProperties();
+        }
+
+        private void InitializeKeyCaptureProperties()
+        {
+            currentKeySequence = new StringBuilder();
+            lastKeySequence = new StringBuilder();
+            isKeyCapturing = false;
+            pressedKeys = new HashSet<Keys>();
+
+            foreach (var key in KeyCombination.Keys)
+            {
+                lastKeySequence.Append(key + " + ");
+            }
+            // Remove the trailing " + "
+            if (lastKeySequence.Length > 3)
+            {
+                lastKeySequence.Length -= 3;
+            }
         }
 
         private void InitializeEventHandlers()
@@ -41,6 +60,13 @@ namespace MonkeyMacro.Forms
             panelTitleBar.MouseDown += OnPanelTitleBarMouseDown;
             panelTitleBar.MouseMove += OnPanelTitleBarMouseMove;
             panelTitleBar.MouseUp += OnPanelTitleBarMouseUp;
+        }
+
+        private void InitializeLayout()
+        {
+            textBoxKeyName.Text = ShortcutName;
+            textBoxKeyCombination.Text = string.Join(" + ", KeyCombination.Keys);
+            textBoxKeyCombination.Enabled = false;
         }
 
         private void OnPanelTitleBarMouseDown(object sender, MouseEventArgs e)
@@ -68,6 +94,7 @@ namespace MonkeyMacro.Forms
 
         private void OnPictureBoxButtonExitClick(object sender, EventArgs e)
         {
+            SetKeyCapturing();
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
@@ -79,28 +106,116 @@ namespace MonkeyMacro.Forms
 
         private void OnButtonSaveClick(object sender, EventArgs e)
         {
+            if (isKeyCapturing)
+            {
+                SetKeyCapturing();
+            }
+
+            this.ShortcutName = textBoxKeyName.Text;
+            this.UpdatedKeyCombination = new KeyCombination { Keys = lastKeySequence.ToString().Split(new[] { " + " }, StringSplitOptions.RemoveEmptyEntries) };
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void OnButtonEditClick(object sender, EventArgs e)
         {
+            SetKeyCapturing();
         }
 
-        private void InitializeLayout()
+        private void SetKeyCapturing()
         {
-            // 필요한 레이아웃 초기화 코드 추가
-            textBoxKeyName.Text = ShortcutName;
-            textBoxKeyCombination.Text = string.Join(" + ", Keys.Keys);
+            isKeyCapturing = !isKeyCapturing;
+            buttonEdit.Text = isKeyCapturing ? "Stop" : "Edit";
+            buttonEdit.BackColor = isKeyCapturing ? Color.FromArgb(44, 49, 58) : Color.FromArgb(81, 95, 115);
+            textBoxKeyName.Enabled = !isKeyCapturing;
+            textBoxKeyCombination.Enabled = isKeyCapturing;
+            this.KeyPreview = isKeyCapturing;
+
+            if (isKeyCapturing)
+            {
+                this.KeyDown += new KeyEventHandler(OnKeyDown);
+                this.KeyUp += new KeyEventHandler(OnKeyUp);
+            }
+            else
+            {
+                this.KeyDown -= new KeyEventHandler(OnKeyDown);
+                this.KeyUp -= new KeyEventHandler(OnKeyUp);
+                pressedKeys.Clear();
+            }
         }
 
-        // 정적 메서드: 다이얼로그 표시 및 결과 반환
-        public static bool ShowDialog(Form parentForm, string shortcutName, KeyCombination keys)
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (isKeyCapturing && !pressedKeys.Contains(e.KeyCode))
+            {
+                pressedKeys.Add(e.KeyCode);
+                UpdateKeyCombinationDisplay();
+            }
+        }
+
+        private void OnKeyUp(object sender, KeyEventArgs e)
+        {
+            if (isKeyCapturing)
+            {
+                pressedKeys.Remove(e.KeyCode);
+            }
+        }
+
+        private string GetKeyDisplayString(Keys key)
+        {
+            switch (key)
+            {
+                case Keys.ControlKey:
+                    return "Ctrl";
+                case Keys.ShiftKey:
+                    return "Shift";
+                case Keys.Menu:
+                    return "Alt";
+                case Keys.LWin:
+                case Keys.RWin:
+                    return "Win";
+                case Keys.Oemcomma:
+                    return "<";
+                case Keys.OemPeriod:
+                    return ">";
+                default:
+                    return key.ToString();
+            }
+        }
+
+        private void UpdateKeyCombinationDisplay()
+        {
+            currentKeySequence.Clear();
+            foreach (var key in pressedKeys)
+            {
+                currentKeySequence.Append(GetKeyDisplayString(key) + " + ");
+            }
+            // Remove the trailing " + "
+            if (currentKeySequence.Length > 3)
+            {
+                currentKeySequence.Length -= 3;
+            }
+            textBoxKeyCombination.Text = currentKeySequence.ToString();
+            lastKeySequence = new StringBuilder(currentKeySequence.ToString());
+        }
+
+        public static (string shortcutName, KeyCombination keyCombination, DialogResult dialogResult) ShowDialog(Form parentForm, string shortcutName, KeyCombination keys)
         {
             using (KeyDialog editDialog = new KeyDialog(shortcutName, keys))
             {
                 editDialog.StartPosition = FormStartPosition.CenterParent;
-                editDialog.TopMost = parentForm.TopMost;  // 부모 폼의 TopMost 상태에 따라 다이얼로그의 TopMost 설정
-                return editDialog.ShowDialog() == DialogResult.OK;
+                editDialog.TopMost = parentForm.TopMost;
+                var result = editDialog.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    return (editDialog.ShortcutName, editDialog.UpdatedKeyCombination, result);
+                }
+
+                return (shortcutName, keys, result);
             }
         }
+
     }
 }

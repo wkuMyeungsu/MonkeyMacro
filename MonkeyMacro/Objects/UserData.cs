@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace MonkeyMacro
 {
@@ -17,15 +16,36 @@ namespace MonkeyMacro
             AppsShortcutDict = new Dictionary<string, ApplicationShortcut>();
         }
 
-        public void AddApplicationShortcut(string applicationName, string shortcutName, params string[] keys)
+        // 단축키를 추가하는 메서드
+        public void AddApplicationShortcut(string applicationName, string shortcutName, KeyCombination keyCombination)
         {
             if (!AppsShortcutDict.ContainsKey(applicationName))
                 AppsShortcutDict[applicationName] = new ApplicationShortcut();
 
-            if (!AppsShortcutDict[applicationName].ShortcutKeys.ContainsKey(shortcutName))
-                AppsShortcutDict[applicationName].ShortcutKeys[shortcutName] = new KeyCombination();
+            AppsShortcutDict[applicationName].ShortcutKeys[shortcutName] = keyCombination;
+        }
 
-            AppsShortcutDict[applicationName].ShortcutKeys[shortcutName].Keys = keys;
+        // 단축키를 수정하는 메서드
+        public void ModifyApplicationShortcut(string applicationName, string oldShortcutName, string newShortcutName, KeyCombination newKeyCombination)
+        {
+            if (!AppsShortcutDict.ContainsKey(applicationName))
+            {
+                Debug.WriteLine($"Application '{applicationName}' does not exist. Cannot modify shortcut.");
+                return;
+            }
+
+            if (!AppsShortcutDict[applicationName].ShortcutKeys.ContainsKey(oldShortcutName))
+            {
+                Debug.WriteLine($"Shortcut '{oldShortcutName}' for application '{applicationName}' does not exist. Cannot modify.");
+                return;
+            }
+
+            // 기존 단축키 이름으로 ShortcutKeys 딕셔너리에서 항목을 찾음
+            var shortcut = AppsShortcutDict[applicationName].ShortcutKeys[oldShortcutName];
+
+            // 단축키 이름 변경
+            AppsShortcutDict[applicationName].ShortcutKeys.Remove(oldShortcutName);
+            AppsShortcutDict[applicationName].ShortcutKeys[newShortcutName] = newKeyCombination;
         }
 
         // 데이터를 로드하는 메서드
@@ -44,7 +64,8 @@ namespace MonkeyMacro
 
                     if (keys != null)
                     {
-                        AddApplicationShortcut(applicationName, shortcutName, keys);
+                        var keyCombination = new KeyCombination { Keys = keys };
+                        AddApplicationShortcut(applicationName, shortcutName, keyCombination);
                     }
                     else
                     {

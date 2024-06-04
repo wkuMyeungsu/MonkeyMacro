@@ -286,9 +286,7 @@ namespace MonkeyMacro
         {
             if (isHome)
             {
-                MessageBox.Show("add Key");
-                //testFuncAsync();
-                testPrint();
+                AddShortcutKey();
             }
             else
             {
@@ -297,48 +295,87 @@ namespace MonkeyMacro
             }
         }
 
-        private async Task testFuncAsync()
+        private async void AddShortcutKey()
         {
-            string userName = userDataStorage.UserName;
-            string applicationName = "Visual Studio";
-            string shortcutName = "Copy";
-            string[] keys = new string[] { "Ctrl", "C" };
-
-            await firebaseController.SetUserShortcut(userName, applicationName, shortcutName, keys);
-            //await firebaseController.DeleteUserShortcut(userName, applicationName, shortcutName);
-            //await firebaseController.UpdateUserSettings(userName, 55, false, true);
-        }
-
-        private void testPrint()
-        {
-            if (userDataStorage == null)
+            var (shortcutName, keyCombination, dialogResult) = KeyDialog.ShowDialog(this, "", new KeyCombination { Keys = new string[0] });
+            if (dialogResult == DialogResult.OK && shortcutName != null && keyCombination != null)
             {
-                MessageBox.Show("User data is not loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+                string userName = userDataStorage.UserName;
+                string[] keys = keyCombination.Keys;
 
-            // 결과 문자열을 구성합니다.
-            StringBuilder result = new StringBuilder();
-            result.AppendLine("User Data Keys:");
-            result.AppendLine($"UserName: {userDataStorage.UserName}");
+                // FirebaseController를 사용하여 단축키 추가
+                firebaseController = FirebaseController.Instance;
+                bool success = await firebaseController.AddUserShortcut(userName, tracingAppName, shortcutName, keys);
 
-            result.AppendLine("\nApplications and Shortcuts:");
-            foreach (var app in userDataStorage.AppsShortcutDict)
-            {
-                result.AppendLine($"{app.Key}:");
-                foreach (var shortcut in app.Value.ShortcutKeys)
+                if (success)
                 {
-                    result.AppendLine($"  {shortcut.Key}: {string.Join(", ", shortcut.Value.Keys)}");
+                    MessageBox.Show("단축키가 추가되었습니다.");
+                    // 사용자 데이터 로컬에도 반영
+                    if (userDataStorage.AppsShortcutDict.ContainsKey(tracingAppName))
+                    {
+                        userDataStorage.AppsShortcutDict[tracingAppName].ShortcutKeys[shortcutName] = new KeyCombination { Keys = keys };
+                    }
+                    else
+                    {
+                        userDataStorage.AppsShortcutDict[tracingAppName] = new ApplicationShortcut
+                        {
+                            ShortcutKeys = new Dictionary<string, KeyCombination> { { shortcutName, new KeyCombination { Keys = keys } } }
+                        };
+                    }
+
+                    // 홈 컨트롤 업데이트
+                    UpdateHomeKeyItems(tracingAppName);
+                }
+                else
+                {
+                    MessageBox.Show("단축키 추가 중 오류가 발생했습니다.");
                 }
             }
-
-            result.AppendLine("\nUser Settings:");
-            result.AppendLine($"Opacity: {userDataStorage.UserSettings.Opacity}");
-            result.AppendLine($"TopMost: {userDataStorage.UserSettings.TopMost}");
-
-            // 결과를 메시지 박스로 표시합니다.
-            MessageBox.Show(result.ToString(), "User Data Overview", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+
+        /*        private async Task testFuncAsync()
+                {
+                    string userName = userDataStorage.UserName;
+                    string applicationName = "Visual Studio";
+                    string shortcutName = "Copy";
+                    string[] keys = new string[] { "Ctrl", "C" };
+
+                    await firebaseController.AddUserShortcut(userName, applicationName, shortcutName, keys);
+                    //await firebaseController.DeleteUserShortcut(userName, applicationName, shortcutName);
+                    //await firebaseController.UpdateUserSettings(userName, 55, false, true);
+                }
+
+                private void testPrint()
+                {
+                    if (userDataStorage == null)
+                    {
+                        MessageBox.Show("User data is not loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // 결과 문자열을 구성합니다.
+                    StringBuilder result = new StringBuilder();
+                    result.AppendLine("User Data Keys:");
+                    result.AppendLine($"UserName: {userDataStorage.UserName}");
+
+                    result.AppendLine("\nApplications and Shortcuts:");
+                    foreach (var app in userDataStorage.AppsShortcutDict)
+                    {
+                        result.AppendLine($"{app.Key}:");
+                        foreach (var shortcut in app.Value.ShortcutKeys)
+                        {
+                            result.AppendLine($"  {shortcut.Key}: {string.Join(", ", shortcut.Value.Keys)}");
+                        }
+                    }
+
+                    result.AppendLine("\nUser Settings:");
+                    result.AppendLine($"Opacity: {userDataStorage.UserSettings.Opacity}");
+                    result.AppendLine($"TopMost: {userDataStorage.UserSettings.TopMost}");
+
+                    // 결과를 메시지 박스로 표시합니다.
+                    MessageBox.Show(result.ToString(), "User Data Overview", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }*/
 
         private void OnUpdateTimerTick(object sender, EventArgs e)
         {

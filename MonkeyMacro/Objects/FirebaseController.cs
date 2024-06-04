@@ -89,10 +89,8 @@ public class FirebaseController
         return null; // 예외 발생 또는 데이터가 없을 경우 null 반환
     }
 
-
-
-    // 단축키 추가 또는 업데이트
-    public async Task<bool> SetUserShortcut(string userName, string applicationName, string shortcutName, string[] keys)
+    // 단축키 추가
+    public async Task<bool> AddUserShortcut(string userName, string applicationName, string shortcutName, string[] keys)
     {
         try
         {
@@ -109,9 +107,9 @@ public class FirebaseController
 
             // Firestore 문서 내에 'appsShortcutDict' 필드에 단축키 정보 추가
             var update = new Dictionary<string, object>
-        {
-            { "appsShortcutDict", shortcutData }
-        };
+            {
+                { "appsShortcutDict", shortcutData }
+            };
 
             // SetAsync를 사용하여 데이터 병합
             await userDocRef.SetAsync(update, SetOptions.MergeAll);
@@ -120,6 +118,48 @@ public class FirebaseController
         catch (Exception ex)
         {
             MessageBox.Show($"단축키 추가 중 오류 발생: {ex.Message}");
+            return false;
+        }
+    }
+
+    // 단축키 수정
+    public async Task<bool> ModifyUserShortcut(string userName, string applicationName, string oldShortcutName, string newShortcutName, string[] keys)
+    {
+        try
+        {
+            DocumentReference userDocRef = db.Collection("Users").Document(userName);
+            DocumentSnapshot snapshot = await userDocRef.GetSnapshotAsync();
+
+            if (snapshot.Exists)
+            {
+                string appPath = $"appsShortcutDict.{applicationName}";
+                string oldShortcutPath = $"{appPath}.{oldShortcutName}";
+
+                // 기존 단축키 삭제
+                Dictionary<string, object> updates = new Dictionary<string, object> { { oldShortcutPath, FieldValue.Delete } };
+                await userDocRef.UpdateAsync(updates);
+
+                // 새 단축키 추가
+                var newShortcutData = new Dictionary<string, object>
+                {
+                    [applicationName] = new Dictionary<string, object>
+                    {
+                        [newShortcutName] = keys
+                    }
+                };
+                var newUpdate = new Dictionary<string, object>
+                {
+                    { "appsShortcutDict", newShortcutData }
+                };
+
+                await userDocRef.SetAsync(newUpdate, SetOptions.MergeAll);
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"단축키 수정 중 오류 발생: {ex.Message}");
             return false;
         }
     }
