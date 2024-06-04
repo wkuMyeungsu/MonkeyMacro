@@ -23,10 +23,10 @@ namespace MonkeyMacro
         private UserData userData;
         private string tracingAppName;
 
-        //사용자 설정 값
-        private bool user_Loginstate = false;   //로그인 상태 확인
-        public double user_Opacityvalue = 0.9;  //투명도 
-        public bool user_useTrayMinimize = false;   //트레이로 최소화
+        //ProgramSetting 값
+        private bool isLogin = false;   //로그인 상태 확인
+        public double opacityValue = 0.9;  //투명도
+        public bool useTrayMinimize = false;   //트레이로 최소화
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -74,7 +74,7 @@ namespace MonkeyMacro
 
             if (result == DialogResult.OK)
             {
-                user_Loginstate = true;
+                isLogin = true;
                 string userName = loginForm.UserName;
 
                 // 비동기로 사용자 데이터 로드
@@ -103,7 +103,11 @@ namespace MonkeyMacro
 
         private void ApplyUserSettings()
         {
+            opacityValue = userData.UserSettings.Opacity;
+            this.Opacity = opacityValue;
 
+            this.TopMost = userData.UserSettings.TopMost;
+            useTrayMinimize = userData.UserSettings.UseTrayMinimize;
         }
 
         private void InitializeDefaultUserControl()
@@ -125,7 +129,6 @@ namespace MonkeyMacro
         {
             isDragging = false;
             isHome = true;
-            this.TopMost = true;
             tracingAppName = "Tracing";
         }
 
@@ -178,15 +181,20 @@ namespace MonkeyMacro
             if (userControl.GetType() == typeof(UserControlHome))
             {
                 isHome = true;
+                if(userData != null)
+                {
+                    UpdateHomeKeyItems(tracingAppName);
+                }
             }
             else
             {
                 isHome = false;
             }
-            ChangeUtilityButton(isHome);
+
+            ChangeUtilityButton();
         }
 
-        private void UpdateHomeUserControl(string tracingAppName)
+        private void UpdateHomeKeyItems(string tracingAppName)
         {
             if (userData == null)
             {
@@ -209,7 +217,7 @@ namespace MonkeyMacro
             }
         }
 
-        private void ChangeUtilityButton(bool isHome)
+        private void ChangeUtilityButton()
         {
             if (isHome)
             {
@@ -228,7 +236,7 @@ namespace MonkeyMacro
 
         private void OnPictureBoxButtonExitClick(object sender, EventArgs e)
         {
-            if (user_useTrayMinimize)
+            if (useTrayMinimize)
                 this.Hide();
             else
                 // 사용자 정보 저장 함수 호출
@@ -237,9 +245,6 @@ namespace MonkeyMacro
 
         private void ExitApplication()
         {
-            // 사용자 정보 저장 함수 호출
-            SaveUserInfo();
-
             // 종료 확인 메시지 박스
             string dialogTitle = "종료 확인";
             string dialogMessage = "프로그램을 정말 종료 하시겠습니까?";
@@ -249,12 +254,16 @@ namespace MonkeyMacro
             bool dialogResult = AlertDialog.ShowDialog(this, dialogTitle, dialogMessage, dialogOKText, dialogCancelText);
             if (dialogResult)
             {
+                // 사용자 정보 저장 함수 호출
+                SaveUserInfo();
+
                 Application.Exit();
             }
         }
 
         private void SaveUserInfo()
         {
+
         }
 
         private void OnPictureBoxButtonMinimizeClick(object sender, EventArgs e)
@@ -279,7 +288,8 @@ namespace MonkeyMacro
             if (isHome)
             {
                 MessageBox.Show("add Key");
-                testFuncAsync();
+                //testFuncAsync();
+                testPrint();
             }
             else
             {
@@ -300,7 +310,7 @@ namespace MonkeyMacro
             //await firebaseController.UpdateUserSettings(userName, 55, false, true);
         }
 
-        private void testprint()
+        private void testPrint()
         {
             if (userData == null)
             {
@@ -342,7 +352,7 @@ namespace MonkeyMacro
                 {
                     tracingAppName = newTracingAppName;
                     labelMenuInfo.Text = $"Tracing : {tracingAppName}";
-                    UpdateHomeUserControl(tracingAppName);
+                    UpdateHomeKeyItems(tracingAppName);
                 }
             }
         }
@@ -388,13 +398,13 @@ namespace MonkeyMacro
         //트레이 관련 동작들 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (user_Loginstate)
+            if (isLogin)
                 this.Show();
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (user_Loginstate)
+            if (isLogin)
                 this.Show();
         }
 

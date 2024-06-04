@@ -24,8 +24,8 @@ namespace MonkeyMacro.UserControls
         {
             if (ParentForm is MainForm mainForm)
             {
-                bool setTrayicon = mainForm.user_useTrayMinimize;
-                double mainFormOpacity = mainForm.user_Opacityvalue;
+                bool setTrayicon = mainForm.useTrayMinimize;
+                double mainFormOpacity = mainForm.opacityValue;
 
                 int trackBarValue = (int)(mainFormOpacity * 100);
                 TrackOpacity.Value = trackBarValue;
@@ -36,16 +36,27 @@ namespace MonkeyMacro.UserControls
                     SetTray.Checked = true;
                     QuitProgram.Checked = false;
                 }
+
+                SetOpacity(mainFormOpacity); // SetOpacity 호출
             }
         }
 
         private void OnOpacityTrackScroll(object sender, EventArgs e)
         {
-            LabelOpacity.Text = TrackOpacity.Value.ToString() + "%";
             double opacityValue = (double)TrackOpacity.Value / 100;
+            LabelOpacity.Text = TrackOpacity.Value.ToString() + "%";
+
             if (ParentForm is MainForm mainForm)
             {
-                mainForm.user_Opacityvalue = opacityValue; //사용자 투명도값 설정
+                SetOpacity(opacityValue); // SetOpacity 호출
+            }
+        }
+
+        private void SetOpacity(double opacityValue)
+        {
+            if (ParentForm is MainForm mainForm)
+            {
+                mainForm.opacityValue = opacityValue; // 사용자 투명도값 설정
                 mainForm.Opacity = opacityValue; // 메인폼의 투명도 값 설정
             }
         }
@@ -56,14 +67,14 @@ namespace MonkeyMacro.UserControls
             {
                 if (ParentForm is MainForm mainForm)
                 {
-                    mainForm.user_useTrayMinimize = true;
+                    mainForm.useTrayMinimize = true;
                 }
             }
             else
             {
                 if (ParentForm is MainForm mainForm)
                 {
-                    mainForm.user_useTrayMinimize = false;
+                    mainForm.useTrayMinimize = false;
                 }
             }
         }

@@ -56,7 +56,7 @@ namespace MonkeyMacro
             var settings = (Dictionary<string, object>)data["userSettings"];
             UserSettings = new UserSettings
             {
-                Opacity = Convert.ToInt32(settings["opacity"]),
+                Opacity = Convert.ToDouble(settings["opacity"]),
                 TopMost = Convert.ToBoolean(settings["topMost"]),
                 UseTrayMinimize = Convert.ToBoolean(settings["useTrayMinimize"])
             };
@@ -81,7 +81,7 @@ namespace MonkeyMacro
 
     public class UserSettings
     {
-        public int Opacity { get; set; }
+        public double Opacity { get; set; }
         public bool TopMost { get; set; }
         public bool UseTrayMinimize { get; set; }
     }
