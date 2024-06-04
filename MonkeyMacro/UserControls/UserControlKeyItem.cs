@@ -61,17 +61,15 @@ namespace MonkeyMacro.UserControls
                     }
 
                     // 컨트롤 제거 및 레이아웃 다시 정렬
+                    Control parentControl = this.Parent;
                     this.Parent.Controls.Remove(this);
                     this.Dispose();
 
-                    // MainForm에서 UserControlHome을 찾아서 레이아웃을 다시 그리도록 요청
-                    foreach (Control control in mainForm.Controls)
+                    // UserControlHome을 찾아서 레이아웃을 다시 그리도록 요청
+                    UserControlHome homeControl = FindParentUserControlHome(parentControl);
+                    if (homeControl != null)
                     {
-                        if (control is UserControlHome homeControl)
-                        {
-                            homeControl.UpdateControl(TracingAppName, mainForm.userDataStorage.AppsShortcutDict);
-                            break;
-                        }
+                        homeControl.UpdateControl(TracingAppName, mainForm.userDataStorage.AppsShortcutDict);
                     }
 
                     MessageBox.Show("단축키가 삭제되었습니다.");
@@ -82,6 +80,22 @@ namespace MonkeyMacro.UserControls
                 }
             }
         }
+
+        private UserControlHome FindParentUserControlHome(Control control)
+        {
+            if (control == null)
+            {
+                return null;
+            }
+
+            if (control is UserControlHome homeControl)
+            {
+                return homeControl;
+            }
+
+            return FindParentUserControlHome(control.Parent);
+        }
+
 
 
         private async void ShowEditDialog()
