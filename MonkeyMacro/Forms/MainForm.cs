@@ -16,17 +16,15 @@ namespace MonkeyMacro
     public partial class MainForm : Form
     {
         private bool isDragging;
-        private bool isHome;
         private Point draggingStartPoint;
 
         private FirebaseController firebaseController;
-        private UserData userData;
+        public UserData userDataStorage;
         private string tracingAppName;
 
-        //ProgramSetting 값
-        private bool isLogin = false;   //로그인 상태 확인
-        public double opacityValue = 0.9;  //투명도
-        public bool useTrayMinimize = false;   //트레이로 최소화
+        private bool isLogin; //로그인 상태 확인
+        private bool isHome;
+        public bool useTrayMinimize; //트레이로 최소화
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -40,21 +38,18 @@ namespace MonkeyMacro
         {
             InitializeComponent();
 
-            // 로그인 폼 표시
-            ShowLoginForm();
-
             InitializeEventHandlers();
-            InitializeDefaultUserControl();
             InitializeAttributes();
             InitializeLayout();
-            InitializeUpdateTimer();
+            InitializeDefaultUserControl();
+
+            // 로그인 폼 표시
+            ShowLoginForm();
         }
 
         private void InitializeLayout()
         {
-            // FormStyling
-            FormStyler.ApplyShadow(this);
-            FormStyler.ApplyRoundedCorners(this, 5, 5);
+
         }
 
         private void InitializeUpdateTimer()
@@ -89,7 +84,8 @@ namespace MonkeyMacro
                     {
                         this.Invoke(new Action(() =>
                         {
-                            ApplyUserSettings(); // UI 설정 초기화
+                            LoadUserSettings(); // UI 설정 초기화
+                            InitializeUpdateTimer();
                             this.Show(); // 데이터 로드 성공시 메인 폼 표시
                         }));
                     }
@@ -101,19 +97,21 @@ namespace MonkeyMacro
             }
         }
 
-        private void ApplyUserSettings()
+        private void LoadUserSettings()
         {
-            opacityValue = userData.UserSettings.Opacity;
-            this.Opacity = opacityValue;
+            UserSettings _userSettings = userDataStorage.UserSettings;
 
-            this.TopMost = userData.UserSettings.TopMost;
-            useTrayMinimize = userData.UserSettings.UseTrayMinimize;
+            this.Opacity = _userSettings.Opacity;
+            this.TopMost = _userSettings.TopMost;
+            useTrayMinimize = _userSettings.UseTrayMinimize;
         }
 
         private void InitializeDefaultUserControl()
         {
             UserControlHome uc = new UserControlHome();
             SwitchUserControl(uc);
+
+            isHome = true;
         }
 
         private void InitializeEventHandlers()
@@ -128,8 +126,9 @@ namespace MonkeyMacro
         private void InitializeAttributes()
         {
             isDragging = false;
-            isHome = true;
             tracingAppName = "Tracing";
+            useTrayMinimize = false;
+            isLogin = false;
         }
 
         private async Task LoadInitUserData(string userName)
@@ -137,9 +136,9 @@ namespace MonkeyMacro
             var data = await firebaseController.GetUserData(userName);
             if (data != null)
             {
-                userData = new UserData();
-                userData.UserName = userName;
-                userData.LoadFromFirebaseController(data);
+                userDataStorage = new UserData();
+                userDataStorage.UserName = userName;
+                userDataStorage.LoadFromFirebaseController(data);
             }
             else
             {
@@ -181,7 +180,7 @@ namespace MonkeyMacro
             if (userControl.GetType() == typeof(UserControlHome))
             {
                 isHome = true;
-                if(userData != null)
+                if(userDataStorage != null)
                 {
                     UpdateHomeKeyItems(tracingAppName);
                 }
@@ -196,7 +195,7 @@ namespace MonkeyMacro
 
         private void UpdateHomeKeyItems(string tracingAppName)
         {
-            if (userData == null)
+            if (userDataStorage == null)
             {
                 
                 MessageBox.Show("User data is not loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -206,7 +205,7 @@ namespace MonkeyMacro
             UserControlHome homeControl = panelContainer.Controls.OfType<UserControlHome>().FirstOrDefault();
             if (homeControl != null)
             {
-                var appsShortcutDict = userData.AppsShortcutDict;
+                var appsShortcutDict = userDataStorage.AppsShortcutDict;
                 foreach ( var appShortcut in appsShortcutDict.Keys )
                 {
                     if ( appShortcut == tracingAppName)
@@ -300,7 +299,7 @@ namespace MonkeyMacro
 
         private async Task testFuncAsync()
         {
-            string userName = userData.UserName;
+            string userName = userDataStorage.UserName;
             string applicationName = "Visual Studio";
             string shortcutName = "Copy";
             string[] keys = new string[] { "Ctrl", "C" };
@@ -312,7 +311,7 @@ namespace MonkeyMacro
 
         private void testPrint()
         {
-            if (userData == null)
+            if (userDataStorage == null)
             {
                 MessageBox.Show("User data is not loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -321,10 +320,10 @@ namespace MonkeyMacro
             // 결과 문자열을 구성합니다.
             StringBuilder result = new StringBuilder();
             result.AppendLine("User Data Keys:");
-            result.AppendLine($"UserName: {userData.UserName}");
+            result.AppendLine($"UserName: {userDataStorage.UserName}");
 
             result.AppendLine("\nApplications and Shortcuts:");
-            foreach (var app in userData.AppsShortcutDict)
+            foreach (var app in userDataStorage.AppsShortcutDict)
             {
                 result.AppendLine($"{app.Key}:");
                 foreach (var shortcut in app.Value.ShortcutKeys)
@@ -334,8 +333,8 @@ namespace MonkeyMacro
             }
 
             result.AppendLine("\nUser Settings:");
-            result.AppendLine($"Opacity: {userData.UserSettings.Opacity}");
-            result.AppendLine($"TopMost: {userData.UserSettings.TopMost}");
+            result.AppendLine($"Opacity: {userDataStorage.UserSettings.Opacity}");
+            result.AppendLine($"TopMost: {userDataStorage.UserSettings.TopMost}");
 
             // 결과를 메시지 박스로 표시합니다.
             MessageBox.Show(result.ToString(), "User Data Overview", MessageBoxButtons.OK, MessageBoxIcon.Information);

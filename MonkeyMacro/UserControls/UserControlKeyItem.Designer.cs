@@ -28,78 +28,82 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelKeyName = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.pictureBoxButtonExit = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonExit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.labelShortcutName = new System.Windows.Forms.Label();
+            this.textBoxKeyCombination = new System.Windows.Forms.TextBox();
+            this.pictureBoxButtonEdit = new System.Windows.Forms.PictureBox();
+            this.pictureBoxButtonDelete = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonDelete)).BeginInit();
             this.SuspendLayout();
             // 
             // labelKeyName
             // 
-            this.labelKeyName.AutoSize = true;
-            this.labelKeyName.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelKeyName.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.labelKeyName.Location = new System.Drawing.Point(12, 9);
-            this.labelKeyName.Name = "labelKeyName";
-            this.labelKeyName.Size = new System.Drawing.Size(100, 23);
-            this.labelKeyName.TabIndex = 1;
-            this.labelKeyName.Text = "단축키 별명";
+            this.labelShortcutName.AutoSize = true;
+            this.labelShortcutName.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelShortcutName.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.labelShortcutName.Location = new System.Drawing.Point(14, 11);
+            this.labelShortcutName.Name = "labelKeyName";
+            this.labelShortcutName.Size = new System.Drawing.Size(108, 27);
+            this.labelShortcutName.TabIndex = 1;
+            this.labelShortcutName.Text = "단축키 별명";
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(32, 45);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(215, 27);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "Ctrl + V";
+            this.textBoxKeyCombination.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxKeyCombination.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxKeyCombination.Location = new System.Drawing.Point(37, 56);
+            this.textBoxKeyCombination.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxKeyCombination.Name = "textBox1";
+            this.textBoxKeyCombination.ReadOnly = true;
+            this.textBoxKeyCombination.Size = new System.Drawing.Size(245, 32);
+            this.textBoxKeyCombination.TabIndex = 2;
+            this.textBoxKeyCombination.Text = "Ctrl + V";
             // 
-            // pictureBoxButtonExit
+            // pictureBoxButtonEdit
             // 
-            this.pictureBoxButtonExit.Image = global::MonkeyMacro.Properties.Resources.white_edit_sqare;
-            this.pictureBoxButtonExit.Location = new System.Drawing.Point(233, 9);
-            this.pictureBoxButtonExit.Name = "pictureBoxButtonExit";
-            this.pictureBoxButtonExit.Size = new System.Drawing.Size(16, 16);
-            this.pictureBoxButtonExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxButtonExit.TabIndex = 4;
-            this.pictureBoxButtonExit.TabStop = false;
+            this.pictureBoxButtonEdit.Image = global::MonkeyMacro.Properties.Resources.white_edit_sqare;
+            this.pictureBoxButtonEdit.Location = new System.Drawing.Point(266, 11);
+            this.pictureBoxButtonEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBoxButtonEdit.Name = "pictureBoxButtonEdit";
+            this.pictureBoxButtonEdit.Size = new System.Drawing.Size(18, 20);
+            this.pictureBoxButtonEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxButtonEdit.TabIndex = 4;
+            this.pictureBoxButtonEdit.TabStop = false;
             // 
-            // pictureBox1
+            // pictureBoxButtonDelete
             // 
-            this.pictureBox1.Image = global::MonkeyMacro.Properties.Resources.white_trash;
-            this.pictureBox1.Location = new System.Drawing.Point(255, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxButtonDelete.Image = global::MonkeyMacro.Properties.Resources.white_trash;
+            this.pictureBoxButtonDelete.Location = new System.Drawing.Point(291, 11);
+            this.pictureBoxButtonDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBoxButtonDelete.Name = "pictureBoxButtonDelete";
+            this.pictureBoxButtonDelete.Size = new System.Drawing.Size(18, 20);
+            this.pictureBoxButtonDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxButtonDelete.TabIndex = 5;
+            this.pictureBoxButtonDelete.TabStop = false;
             // 
             // UserControlKeyItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.pictureBoxButtonExit);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.labelKeyName);
+            this.Controls.Add(this.pictureBoxButtonDelete);
+            this.Controls.Add(this.pictureBoxButtonEdit);
+            this.Controls.Add(this.textBoxKeyCombination);
+            this.Controls.Add(this.labelShortcutName);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UserControlKeyItem";
-            this.Size = new System.Drawing.Size(279, 84);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonExit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Size = new System.Drawing.Size(319, 105);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxButtonDelete)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label labelKeyName;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.PictureBox pictureBoxButtonExit;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label labelShortcutName;
+        private System.Windows.Forms.TextBox textBoxKeyCombination;
+        private System.Windows.Forms.PictureBox pictureBoxButtonEdit;
+        private System.Windows.Forms.PictureBox pictureBoxButtonDelete;
     }
 }

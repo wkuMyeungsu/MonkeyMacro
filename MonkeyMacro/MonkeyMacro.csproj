@@ -173,6 +173,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\KeyDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KeyDialog.Designer.cs">
+      <DependentUpon>KeyDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AlertDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +227,9 @@
       <DependentUpon>UserControlSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Objects\UserData.cs" />
+    <EmbeddedResource Include="Forms\KeyDialog.resx">
+      <DependentUpon>KeyDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AlertDialog.resx">
       <DependentUpon>AlertDialog.cs</DependentUpon>
     </EmbeddedResource>

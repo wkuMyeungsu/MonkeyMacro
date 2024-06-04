@@ -99,10 +99,6 @@ namespace MonkeyMacro.Forms
 
             // buttonCancel
             buttonCancel.TextAlign = ContentAlignment.MiddleCenter;
-
-            // FormStyling
-            FormStyler.ApplyShadow(this);
-            FormStyler.ApplyRoundedCorners(this, 5, 5);
         }
 
         // 정적 메서드: 다이얼로그 표시 및 결과 반환

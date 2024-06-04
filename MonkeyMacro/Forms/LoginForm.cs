@@ -36,10 +36,6 @@ namespace MonkeyMacro
 
             // textBoxPassWord
             textBoxPassWord.PasswordChar = '*';
-
-            // FormStyling
-            FormStyler.ApplyShadow(this);
-            FormStyler.ApplyRoundedCorners(this, 5, 5);
         }
 
         private void InitializeEventHandlers()
@@ -47,8 +43,11 @@ namespace MonkeyMacro
             panelTitleBar.MouseDown += OnPanelTitleBarMouseDown;
             panelTitleBar.MouseMove += OnPanelTitleBarMouseMove;
             panelTitleBar.MouseUp += OnPanelTitleBarMouseUp;
+
             pictureBoxButtonExit.MouseMove += OnPictureBoxButtonMove;
+
             textBoxUserName.KeyPress += OnTextBoxUserNameKeyPress;
+
             textBoxPassWord.KeyPress += OnTextBoxPassWordKeyPress;
         }
 

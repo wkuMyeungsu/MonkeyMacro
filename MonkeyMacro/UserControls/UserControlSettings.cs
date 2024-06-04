@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MonkeyMacro.UserControls
 {
     public partial class UserControlSettings : UserControl
     {
+        private bool useTrayMinimize { get; set; }
+        private bool isTopMost { get; set; }
+        private double opacityValue { get; set; }
+
+        private UserSettings userSettings;
 
         public UserControlSettings()
         {
@@ -24,50 +20,51 @@ namespace MonkeyMacro.UserControls
         {
             if (ParentForm is MainForm mainForm)
             {
-                bool setTrayicon = mainForm.useTrayMinimize;
-                double mainFormOpacity = mainForm.opacityValue;
+                userSettings = mainForm.userDataStorage.UserSettings;
 
-                int trackBarValue = (int)(mainFormOpacity * 100);
-                TrackOpacity.Value = trackBarValue;
-                LabelOpacity.Text = trackBarValue + "%";
+                this.useTrayMinimize = userSettings.UseTrayMinimize;
+                this.opacityValue = userSettings.Opacity;
+                this.isTopMost = userSettings.TopMost;
 
-                if (setTrayicon)
+                int trackBarValue = (int)(opacityValue * 100);
+                trackBarOpacity.Value = trackBarValue;
+                labelOpacity.Text = trackBarValue + "%";
+
+                if (useTrayMinimize)
                 {
-                    SetTray.Checked = true;
-                    QuitProgram.Checked = false;
+                    radioButtonUseTrayMinimize.Checked = true;
+                    radioButtonNotUseTrayMinimize.Checked = false;
                 }
 
-                SetOpacity(mainFormOpacity); // SetOpacity 호출
+                SetOpacity(mainForm); // SetOpacity 호출
             }
         }
 
         private void OnOpacityTrackScroll(object sender, EventArgs e)
         {
-            double opacityValue = (double)TrackOpacity.Value / 100;
-            LabelOpacity.Text = TrackOpacity.Value.ToString() + "%";
+            labelOpacity.Text = trackBarOpacity.Value.ToString() + "%";
 
             if (ParentForm is MainForm mainForm)
             {
-                SetOpacity(opacityValue); // SetOpacity 호출
+                this.opacityValue = trackBarOpacity.Value / 100.0;
+                SetOpacity(mainForm); // SetOpacity 호출
             }
         }
 
-        private void SetOpacity(double opacityValue)
+        private void SetOpacity(MainForm mainForm)
         {
-            if (ParentForm is MainForm mainForm)
-            {
-                mainForm.opacityValue = opacityValue; // 사용자 투명도값 설정
-                mainForm.Opacity = opacityValue; // 메인폼의 투명도 값 설정
-            }
+            mainForm.Opacity = opacityValue; // 메인폼에 투명도 값 적용
+            userSettings.Opacity = opacityValue; // 유저데이터에 투명도 값 업데이트
         }
 
-        private void SetTray_CheckedChanged(object sender, EventArgs e)
+        private void OnTrayCheckedChanged(object sender, EventArgs e)
         {
-            if (SetTray.Checked)
+            if (radioButtonUseTrayMinimize.Checked)
             {
                 if (ParentForm is MainForm mainForm)
                 {
                     mainForm.useTrayMinimize = true;
+                    userSettings.UseTrayMinimize = true;
                 }
             }
             else
@@ -75,6 +72,7 @@ namespace MonkeyMacro.UserControls
                 if (ParentForm is MainForm mainForm)
                 {
                     mainForm.useTrayMinimize = false;
+                    userSettings.UseTrayMinimize = false;
                 }
             }
         }
