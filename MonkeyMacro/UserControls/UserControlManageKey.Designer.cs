@@ -28,33 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelTestManageKey = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // labelTestManageKey
-            // 
-            this.labelTestManageKey.AutoSize = true;
-            this.labelTestManageKey.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold);
-            this.labelTestManageKey.Location = new System.Drawing.Point(67, 175);
-            this.labelTestManageKey.Name = "labelTestManageKey";
-            this.labelTestManageKey.Size = new System.Drawing.Size(183, 32);
-            this.labelTestManageKey.TabIndex = 0;
-            this.labelTestManageKey.Text = "Manage Key";
             // 
             // UserControlManageKey
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.labelTestManageKey);
             this.Name = "UserControlManageKey";
             this.Size = new System.Drawing.Size(322, 394);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label labelTestManageKey;
     }
 }
